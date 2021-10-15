@@ -34,6 +34,7 @@ link = "plugins/webfont-loader/webfont-loader-2.min.js"
 # Robotmk green 
 primary_color = "#00D391"
 body_color = "#fff"
+header_color = "#2B3842"
 text_color = "#696c6d"
 text_color_dark = "#1c1d1f"
 text_color_light = "#888c8e"

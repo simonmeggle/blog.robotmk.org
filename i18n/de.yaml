@@ -2,61 +2,61 @@
   translation: Weiterlesen...
 
 - id: search_placeholder
-  translation: Type & Hit Enter...
+  translation: Suchbegriff eingeben...
 
 - id: latest_article
-  translation: Latest Article
+  translation: Neueste Beiträge
 
 - id: categories
-  translation: Categories
+  translation: Kategorien
 
 - id: tags
   translation: Tags
 
 - id: search
-  translation: Search
+  translation: Suche
 
 - id: date
-  translation: Date
+  translation: Datum
 
 - id: posted_by
-  translation: Posted by this author
+  translation: Autor
 
 - id: send
-  translation: Send Now
+  translation: Absenden
 
 - id: name
-  translation: Your Name
+  translation: Name
 
 - id: email 
-  translation: Your Email Address
+  translation: Email-Adresse
 
 - id: message
-  translation: Your Message Here
+  translation: Nachricht
 
 - id: subscribe
-  translation: Subscribe now
+  translation: Eintragen
 
 - id: write_email
-  translation: Hate Forms? Write Us Email
+  translation: Nachricht schreiben
 
 - id: subscribe_newsletter
-  translation: Subscribe Newsletter
+  translation: Zum Newsletter anmelden
 
 - id: quick_links
   translation: Quick Links
 
 - id: social
-  translation: Social Links
+  translation: Social Media
 
 - id: back_to_home
-  translation: Back To Home
+  translation: Home
 
 - id: about_me
-  translation: About Me
+  translation: About
 
 - id: page_not_found
-  translation: Ooops! This Page Is Not Available
+  translation: Seite wurde nicht gefunden
 
 - id: search_results_for
-  translation: Search results for
+  translation: Suchergebniss für 
