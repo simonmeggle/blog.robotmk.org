@@ -1,11 +1,11 @@
 ---
-title: "Cheerful Loving Couple Bakers Drinking Coffee"
+title: "Featured Loving Couple Bakers Drinking Coffee"
 date: 2020-03-14T15:40:24+06:00
 # post thumb
 images:
   - "images/post/post-5.jpg"
 #author
-author: "John Doe"
+author: "Simon Meggle"
 # description
 description: "This is meta description"
 # Taxonomies

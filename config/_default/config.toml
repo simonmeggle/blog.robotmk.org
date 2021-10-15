@@ -1,6 +1,6 @@
 ######################## default configuration ####################
-baseURL = "https://demo.gethugothemes.com/logbook/"
-title = "LogBook | Hugo Personal Blog Template"
+baseURL = "https://demo.gethugothemes.com/foo/"
+title = "FALLBACK"
 theme = "logbook"
 # post pagination
 paginate = "5"
@@ -33,3 +33,4 @@ suffixes = [""]
 [outputFormats.WebAppManifest]
 mediaType = "application/manifest+json"
 rel = "manifest"
+

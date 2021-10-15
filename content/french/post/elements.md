@@ -7,7 +7,7 @@ images:
   - "images/post/post-1.jpg"
   - "images/post/post-3.jpg"
 #author
-author: "John Doe"
+author: "Simon Meggle"
 # description
 description: "This is meta description"
 # Taxonomies
