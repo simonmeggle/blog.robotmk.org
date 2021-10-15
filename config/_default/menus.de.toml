@@ -1,11 +1,12 @@
-############### English navigation ################
+############### German navigation ################
+
 [[main]]
 weight = 1
 name = "blog"
 url = "/"
 
 [[main]]
-name = "About Robotmk"
+name = "Über Robotmk"
 url = "https://www.robotmk.org"
 weight = 2
 
@@ -15,9 +16,9 @@ url = "https://www.robotmk.org/pages/professionalsupport"
 weight = 3
 
 
-# footer menu --------------------------------------------------------
+# footer menu  --------------------------------------------------------
 [[footer]]
-name = "About"
+name = "Über Robotmk"
 url = "https://www.robotmk.org"
 weight = 1
 
@@ -27,11 +28,11 @@ url = "https://www.robotmk.org/pages/professionalsupport"
 weight = 2
 
 [[footer]]
-name = "Privacy Policy"
+name = "Datenschutzerklärung"
 url = "privacy-policy"
 weight = 3
 
 [[footer]]
-name = "Imprint"
+name = "Impressum"
 url = "imprint"
 weight = 4

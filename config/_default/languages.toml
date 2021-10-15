@@ -1,24 +1,23 @@
 ################################### English language #####################################
 [en]
-languageName = "En"
+languageName = "English"
 languageCode = "en-us"
 contentDir = "content/english"
 weight = 1
 home = "Home"
 # footer content
-footer_content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+footer_content = "Robot Framework test integration for E2E monitoring in Checkmk."
 # copyright
-copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)"
+copyright = "© 2021 [ELABIT GmbH](https://www.elabit.de/)"
 
-
-################################### French language #####################################
-[fr]
-languageName = "Fr"
-languageCode = "fr-fr"
-contentDir = "content/french"
+################################### German language #####################################
+[de]
+languageName = "German"
+languageCode = "de-DE"
+contentDir = "content/german"
 weight = 2
-home = "Accueil"
+home = "Home"
 # footer content
-footer_content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+footer_content = "Robot Framework test integration for E2E monitoring in Checkmk."
 # copyright
-copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)"
+copyright = "© 2021 [ELABIT GmbH](https://www.elabit.de/)"

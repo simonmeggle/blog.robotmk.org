@@ -1,6 +1,6 @@
 ######################## default configuration ####################
-baseURL = "https://demo.gethugothemes.com/foo/"
-title = "FALLBACK"
+baseURL = "https://blog.robotmk.org"
+title = "[DEV] Robotmk | Blog"
 theme = "logbook"
 # post pagination
 paginate = "5"
