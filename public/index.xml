@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Robotmk | Blog</title>
+    <title>[DEV] Robotmk | Blog</title>
     <link>https://blog.robotmk.org/</link>
-    <description>Recent content on Robotmk | Blog</description>
+    <description>Recent content on [DEV] Robotmk | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)</copyright>
+    <copyright>© 2021 [ELABIT GmbH](https://www.elabit.de/)</copyright>
     <lastBuildDate>Tue, 14 Apr 2020 15:40:24 +0600</lastBuildDate><atom:link href="https://blog.robotmk.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>School Bag</title>
@@ -56,33 +56,6 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
     
     <item>
       <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
-      <link>https://blog.robotmk.org/post/post-3/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/post/post-3/</guid>
-      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
-    </item>
-    
-    <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
-      <link>https://blog.robotmk.org/post/post-4/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/post/post-4/</guid>
-      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
-    </item>
-    
-    <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
-      <link>https://blog.robotmk.org/post/post-5/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/post/post-5/</guid>
-      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
-    </item>
-    
-    <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
       <link>https://blog.robotmk.org/post/post-6/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
@@ -100,12 +73,39 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
     </item>
     
     <item>
+      <title>Drtter featured Cheerful Loving Couple Bakers Drinking Coffee</title>
+      <link>https://blog.robotmk.org/post/post-4/</link>
+      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
+      
+      <guid>https://blog.robotmk.org/post/post-4/</guid>
+      <description>Ipsum purus quisque tristique adipiscing enim amet torquent lectus a, auctor rutrum nam dictumst duis aptent fermentum elementum augue rhoncus, platea ornare arcu luctus parturient sem mauris sagittis. Venenatis commodo potenti erat augue tempor litora proin semper, feugiat arcu posuere eleifend euismod amet urna, ornare mattis sociosqu ad fringilla sociis nulla.</description>
+    </item>
+    
+    <item>
+      <title>Featured Loving Couple Bakers Drinking Coffee</title>
+      <link>https://blog.robotmk.org/post/post-5/</link>
+      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
+      
+      <guid>https://blog.robotmk.org/post/post-5/</guid>
+      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
+    </item>
+    
+    <item>
       <title>Linen Bag</title>
       <link>https://blog.robotmk.org/shop/product-1/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
       <guid>https://blog.robotmk.org/shop/product-1/</guid>
       <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+    <item>
+      <title>Nochn featured Cheerful Loving Couple Bakers Drinking Coffee</title>
+      <link>https://blog.robotmk.org/post/post-3/</link>
+      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
+      
+      <guid>https://blog.robotmk.org/post/post-3/</guid>
+      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
     </item>
     
     <item>
@@ -150,7 +150,7 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://blog.robotmk.org/about/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Condimentum in urna justo elit turpis risus vitae viverra enim. Augue quis vitae in non nisi, posuere ultrices tempus. Feugiat consequat suspendisse laoreet vitae enim adipiscing cursus. Duis nunc vitae tincidunt sed nibh id. Egestas erat consequat, ornare etiam donec faucibus. Lorem ut enim nunc, senectus adipiscing sed.</description>
+      <description>YLorem ipsum dolor sit amet, consectetur adipiscing elit. Condimentum in urna justo elit turpis risus vitae viverra enim. Augue quis vitae in non nisi, posuere ultrices tempus. Feugiat consequat suspendisse laoreet vitae enim adipiscing cursus. Duis nunc vitae tincidunt sed nibh id. Egestas erat consequat, ornare etiam donec faucibus. Lorem ut enim nunc, senectus adipiscing sed.</description>
     </item>
     
     <item>
@@ -235,15 +235,6 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
     </item>
     
     <item>
-      <title>John Doe</title>
-      <link>https://blog.robotmk.org/author/john-doe/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.robotmk.org/author/john-doe/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue. Duis auctor lacus id vehicula gravida. Nam suscipit vitae purus et laoreet. Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue.</description>
-    </item>
-    
-    <item>
       <title>No Search Found</title>
       <link>https://blog.robotmk.org/404/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -277,6 +268,15 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
       
       <guid>https://blog.robotmk.org/search/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Simon Meggle</title>
+      <link>https://blog.robotmk.org/author/simon-meggle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.robotmk.org/author/simon-meggle/</guid>
+      <description>XLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue. Duis auctor lacus id vehicula gravida. Nam suscipit vitae purus et laoreet. Donec nisi dolor, consequat vel pretium id, auctor in dui. Nam iaculis, neque ac ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue.</description>
     </item>
     
     <item>

@@ -1,0 +1,35 @@
+header.bg-white {
+    background-color: rgb(43,55,66)!important;
+    
+}
+header.bg-white a {
+    color: azure!important;
+}
+
+#select-language, #searchOpen {
+    color: azure!important;
+    background-color: rgb(43,55,66)!important;
+}
+
+
+main p::-moz-selection {
+    color: rgb(43,55,66)!important;
+}
+main p::selection {
+    color: rgb(43,55,66)!important;
+}
+
+
+footer {
+    background-color: rgb(43,55,66);
+    color: azure;
+}
+footer h6 {
+    color: azure!important;
+}
+footer a {
+    color: rgb(220, 220, 220)!important;
+}
+footer p {
+    color: rgb(220, 220, 220)!important;
+}

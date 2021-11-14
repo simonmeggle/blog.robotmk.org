@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Robotmk | Blog</title>
+    <title>Blogs on [DEV] Robotmk | Blog</title>
     <link>https://blog.robotmk.org/post/</link>
-    <description>Recent content in Blogs on Robotmk | Blog</description>
+    <description>Recent content in Blogs on [DEV] Robotmk | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)</copyright>
+    <copyright>© 2021 [ELABIT GmbH](https://www.elabit.de/)</copyright>
     <lastBuildDate>Sun, 15 Mar 2020 15:40:24 +0600</lastBuildDate><atom:link href="https://blog.robotmk.org/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Elements That You Can Use To Create A New Post On This Template.</title>
@@ -38,24 +38,24 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
     
     <item>
       <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
-      <link>https://blog.robotmk.org/post/post-3/</link>
+      <link>https://blog.robotmk.org/post/post-6/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
-      <guid>https://blog.robotmk.org/post/post-3/</guid>
+      <guid>https://blog.robotmk.org/post/post-6/</guid>
       <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
     </item>
     
     <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
+      <title>Drtter featured Cheerful Loving Couple Bakers Drinking Coffee</title>
       <link>https://blog.robotmk.org/post/post-4/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
       <guid>https://blog.robotmk.org/post/post-4/</guid>
-      <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
+      <description>Ipsum purus quisque tristique adipiscing enim amet torquent lectus a, auctor rutrum nam dictumst duis aptent fermentum elementum augue rhoncus, platea ornare arcu luctus parturient sem mauris sagittis. Venenatis commodo potenti erat augue tempor litora proin semper, feugiat arcu posuere eleifend euismod amet urna, ornare mattis sociosqu ad fringilla sociis nulla.</description>
     </item>
     
     <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
+      <title>Featured Loving Couple Bakers Drinking Coffee</title>
       <link>https://blog.robotmk.org/post/post-5/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
@@ -64,11 +64,11 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, 
     </item>
     
     <item>
-      <title>Cheerful Loving Couple Bakers Drinking Coffee</title>
-      <link>https://blog.robotmk.org/post/post-6/</link>
+      <title>Nochn featured Cheerful Loving Couple Bakers Drinking Coffee</title>
+      <link>https://blog.robotmk.org/post/post-3/</link>
       <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
       
-      <guid>https://blog.robotmk.org/post/post-6/</guid>
+      <guid>https://blog.robotmk.org/post/post-3/</guid>
       <description>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out.</description>
     </item>
     
