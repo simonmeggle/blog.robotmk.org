@@ -1,5 +1,5 @@
 ---
-title: "Elements That You Can Use To Create A New Post On This Template."
+title: "xddElements That You Can Use To Create A New Post On This Template."
 date: 2020-03-15T15:40:24+06:00
 # post thumb
 images:
@@ -13,14 +13,10 @@ description: "This is meta description"
 # Taxonomies
 categories: ["photography"]
 tags: ["photo","image"]
-type: "regular" # available type (regular or featured)
-draft: false
+type: "featured" # available type (regular or featured)
+draft: true
 ---
 
-
-#### Heading example
-
-Here is example of hedings. You can use this heading by following markdownify rules. For example: use `#` for heading 1 and use `######` for heading 6.
 
 # Heading 1
 ## Heading 2

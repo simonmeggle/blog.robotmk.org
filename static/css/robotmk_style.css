@@ -20,6 +20,24 @@ main p::selection {
 }
 
 
+main a {
+    text-decoration: underline!important;
+    text-decoration-color: #00D391!important;
+}
+
+/* show underline on hover */
+/* main a:hover {
+    text-decoration: underline!important;
+    text-decoration-color: red!important;
+    -webkit-text-decoration-color: red!important;
+} */
+
+/* Do not scale images */
+main img.w-100 {
+    width: inherit!important;
+}
+
+
 footer {
     background-color: rgb(43,55,66);
     color: azure;

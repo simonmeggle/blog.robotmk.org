@@ -1,0 +1,1 @@
+Blog images: 1200x545 

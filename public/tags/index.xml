@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on [DEV] Robotmk | Blog</title>
+    <title>Tags on Robotmk | Blog</title>
     <link>https://blog.robotmk.org/tags/</link>
-    <description>Recent content in Tags on [DEV] Robotmk | Blog</description>
+    <description>Recent content in Tags on Robotmk | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2021 [ELABIT GmbH](https://www.elabit.de/)</copyright>
@@ -23,51 +23,6 @@
       <pubDate>Sun, 15 Mar 2020 15:40:24 +0600</pubDate>
       
       <guid>https://blog.robotmk.org/tags/photo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>booth</title>
-      <link>https://blog.robotmk.org/tags/booth/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/tags/booth/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>city</title>
-      <link>https://blog.robotmk.org/tags/city/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/tags/city/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>new</title>
-      <link>https://blog.robotmk.org/tags/new/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/tags/new/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>seasone</title>
-      <link>https://blog.robotmk.org/tags/seasone/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/tags/seasone/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>video</title>
-      <link>https://blog.robotmk.org/tags/video/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/tags/video/</guid>
       <description></description>
     </item>
     

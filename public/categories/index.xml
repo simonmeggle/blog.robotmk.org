@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on [DEV] Robotmk | Blog</title>
+    <title>Categories on Robotmk | Blog</title>
     <link>https://blog.robotmk.org/categories/</link>
-    <description>Recent content in Categories on [DEV] Robotmk | Blog</description>
+    <description>Recent content in Categories on Robotmk | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2021 [ELABIT GmbH](https://www.elabit.de/)</copyright>
@@ -14,42 +14,6 @@
       <pubDate>Sun, 15 Mar 2020 15:40:24 +0600</pubDate>
       
       <guid>https://blog.robotmk.org/categories/photography/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>four seasone</title>
-      <link>https://blog.robotmk.org/categories/four-seasone/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/categories/four-seasone/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>newyork city</title>
-      <link>https://blog.robotmk.org/categories/newyork-city/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/categories/newyork-city/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Photobooth</title>
-      <link>https://blog.robotmk.org/categories/photobooth/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/categories/photobooth/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>videography</title>
-      <link>https://blog.robotmk.org/categories/videography/</link>
-      <pubDate>Sat, 14 Mar 2020 15:40:24 +0600</pubDate>
-      
-      <guid>https://blog.robotmk.org/categories/videography/</guid>
       <description></description>
     </item>
     
