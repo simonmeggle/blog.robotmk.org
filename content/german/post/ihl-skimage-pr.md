@@ -12,23 +12,23 @@ type: "regular" # available type (regular or featured)
 draft: false
 ---
 
-(Hinweis: statt [ImageHorizonLibrary](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html) verwende ich die Abkürzung **IHL**.) 
+(Hinweis: statt <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html" target="_blank">ImageHorizonLibrary</a> verwende ich die Abkürzung **IHL**.) 
 
 ## TL'DR
 
-* Der bildpattern-basierte Ansatz zur UI-Automatisierung versucht, auf einem Screenshot des aktuellen Desktops ein Sub-Bild zu finden. Auf die Region des erkannten Bereichs kann dann z.B, mit der Maus geklickt werden. 
-* Bereits 1 abweichender Pixel lässt die Methode in den Standardeinstellungen allerdings fehlschlagen
+* Der Bildpattern-basierte Ansatz zur UI-Automatisierung versucht, auf einem Screenshot des aktuellen Desktops einen bestimmten Teilbereich zu finden. Auf die Region des erkannten Bereichs kann dann z.B. mit der Maus geklickt werden. 
+* Bereits 1 abweichender Pixel lässt die Methode mit den Standardeinstellungen allerdings fehlschlagen.
 * Libraries wie **IHL** erlauben kleinere Pixel-Abweichungen, indem sie einen prozentualen Toleranzwert entgegennehmen (`confidence`, `tolerance`, `similarity`...).
 * **Problematisch bleiben die Unterschiede augenscheinlich identischer Bilder, bei denen eine große Masse der Pixel um minimale Details abweicht.**
 * Kantenerkennung ("Canny edge detection") ist ein probates Mittel, um aus Bildern nur noch die Linien zu extrahieren, welche hohe Kontrastübergänge beschreiben. 
-* Ein Pull Request von [Gautam Ilango](https://github.com/gautamilango) und mir ergänzt die ImageHorizonLibrary um diese Methode als zusätzliche Strategie.  
+* Ein Pull Request von <a href="https://github.com/gautamilango" target="_blank">Gautam Ilango</a> und mir ergänzt die ImageHorizonLibrary um diese Methode als zusätzliche Strategie.  
 
 
 ## Basics: So funktioniert die Bilderkennung
 
-Die für [Robot Framework](https://robotframework.org/) geschriebene Library **ImageHorizon** arbeitet auf Basis des Python-Moduls [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/). Mit diesem Modul können Maus und Tastatur auf Linux, Mac und Windows automatisiert gesteuert werden. Dank der **IHL** kann diese Technologie in Robot-Tests eingesetzt werden, zum Beispiel für End2End-Monitoring mit Robotmk.  
+Die für <a href="https://robotframework.org/" target="_blank">Robot Framework</a> geschriebene Library **ImageHorizon** arbeitet auf Basis des Python-Moduls <a href="https://pyautogui.readthedocs.io/en/latest/" target="_blank">PyAutoGUI</a>. Mit diesem Modul können Maus und Tastatur auf Linux, Mac und Windows automatisiert gesteuert werden. Dank der **IHL** kann diese Technologie in Robot-Tests eingesetzt werden, zum Beispiel für End2End-Monitoring mit Robotmk.  
 
-Damit die Library weiß, wohin sie den Mauszeiger führen soll (z.B. um einen Klick auszuführen), muss ihr diese Zielregion vorher bekannt sein. Diese sucht sie anhand eines sogenannten *Referenzbildes*. 
+Damit die Library weiß, wohin sie den Mauszeiger führen soll (z.B. um einen Klick auszuführen), muss ihr die Zielregion vorher bekannt sein. Diese sucht sie anhand eines sogenannten *Referenzbildes*. 
 
 Nehmen wir als Beispiel dieses Dialogfeld: 
 
@@ -38,7 +38,7 @@ Um den Button "Nicht speichern" anklicken zu können, wird ein Referenzbild erst
 
 {{< image title="Das Referenzbild in Originalqualität" src="images/post/ihl-skimage-pr-nicht-speichern.png" >}}
 
-An der Stelle im Test, wo die Abfrage erwartet wird, kommt das **IHL**-Keyword `Click Image` ([Link](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Click%20Image)) zum Einsatz: als Argument wird lediglich der Name der Referenzdatei `nicht_speichern` angegeben: 
+An der Stelle im Test, wo die Abfrage erwartet wird, kommt das **IHL**-Keyword `Click Image` (<a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Click%20Image" target="_blank">Link</a>) zum Einsatz: als Argument wird lediglich der Name der Referenzdatei `nicht_speichern` angegeben: 
 
 ```robot
     Click Image  nicht_speichern
@@ -66,13 +66,13 @@ Tanzt auch nur ein RGB-Wert (z.B. `(233,40,22)`) aus der Reihe (z.B. `(233,41,22
 Auf den ersten Blick scheint das Szenario von Pixel-Abweichungen konstruiert: man möchte gerne glauben, dass *Haystack*-Bilder 100% vorhersehbar sind. Hier die zwei Hauptgründe, warum man sich darauf nicht verlassen sollte: 
 
 - **Bildkompression**: Nicht selten werden beim End2End-Monitoring die Applikationen über Citrix oder RDP getestet (z.B. um die Performance über WAN-Strecken zu messen).
-  Der Administrator solcher Systeme kann eine Einstellung vorgeben (und macht das meistens auch!), die eine Einwahl auch über eine langsame Netzwerkverbindung erlaubt; der Einwahlserver kompensiert das, indem er die Bildinformation für den Client dynamisch herunterrechnet. Die dabei entstehenden Artifakte im Bild stören zwar keinen Endanwender, bringen aber den End2End-Test zu Fall. {{< image alt="XXXX" src="images/post/ihl-skimage-pr-nicht-speichern-komprimiert.jpg" >}}
+  Der Administrator solcher Systeme kann eine Einstellung vorgeben (und macht das meistens auch!), die eine Einwahl auch über eine langsame Netzwerkverbindung erlaubt; der Einwahlserver kompensiert das, indem er die Bildinformation für den Client dynamisch herunterrechnet. Die dabei entstehenden Artefakte im Bild stören zwar keinen Endanwender, bringen aber den End2End-Test zu Fall. {{< image alt="XXXX" src="images/post/ihl-skimage-pr-nicht-speichern-komprimiert.jpg" >}}
 - **Schriftglättung** (Font-Antialiasing): Schriftarten sind vektorbasiert, Computerdisplays aber rasterbasiert. Anti-Aliasing ist vereinfacht gesagt das, was der Computer unternehmen kann, wenn eine darzustellende Schriftlinie nicht exakt in das Raster der Bildschirms passt. Er errechnet dann weitere Pixel in Zwischentönen, sodass die Schrift für das menschliche Auge "weich" aussieht und leichter zu lesen ist.  
-  Siehe [Wikipedia](https://en.wikipedia.org/wiki/Font_rasterization):  
+  Siehe <a href="https://en.wikipedia.org/wiki/Font_rasterization" target="_blank">Wikipedia</a>:  
   {{< image alt="XXXX" src="images/post/ihl-skimage-pr.md-fontantialiasing.png">}}  
 - **Bonus-Grund Nr. 3**: Fremd-Quellen. Dazu später mehr.
 
-Mit diesen Problemen hatten wohl auch schon die Autoren der ImageHorizonLibrary, [Eficode](https://www.eficode.com), zu tun; jedenfalls beinhaltet die **IHL** die Möglichkeit, einen Wert namens `confidence` zu setzen (Keyword: [Set Confidence](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Set%20Confidence)). `confidence` ist ein Wert zwischen `0..0.99` und beschreibt, wieviel Prozent des Referenzbildes (*Needle*) im Suchbild (*Haystack*) enthalten sein müssen - oder anders ausgedrückt: wie viele Augen die Library bei der Bilderkennung zudrücken darf.
+Mit diesen Problemen hatten wohl auch schon die Autoren der ImageHorizonLibrary, <a href="https://www.eficode.com" target="_blank">Eficode</a>, zu tun; jedenfalls beinhaltet die **IHL** die Möglichkeit, einen Wert namens `confidence` zu setzen (Keyword: <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Set%20Confidence" target="_blank">Set Confidence</a>). `confidence` ist ein Wert zwischen `0` und `0.99` und beschreibt, wieviel Prozent des Referenzbildes (*Needle*) im Suchbild (*Haystack*) enthalten sein müssen - oder anders ausgedrückt: wie viele Augen die Library bei der Bilderkennung zudrücken darf.
 
 ```
 # Setzen von Confidence beim Import der Library
@@ -131,7 +131,7 @@ Wie sieht es denn mit **größeren Abweichungen** aus?
 
 ### Warum confidence alleine scheitert
 
-Greifen wir das Beispiel vom vorherigen Abschnitt auf und nehmen an, dass der Buchstabe auch dann erkannt werden soll, wenn sich die **Hintergrundfarbe** geändert hat. Das ist z.B. der Fall beim "Hover"-Effekt eines Buttons, wenn man die Maus darüber bewegt. (Im Übrigen kann dieser Fehler in Web-Tests mit [Selenium](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html) oder [Playwright](https://marketsquare.github.io/robotframework-browser/Browser.html) nicht vorkommen!) 
+Greifen wir das Beispiel vom vorherigen Abschnitt auf und nehmen an, dass der Buchstabe auch dann erkannt werden soll, wenn sich die **Hintergrundfarbe** geändert hat. Das ist z.B. der Fall beim "Hover"-Effekt eines Buttons, wenn man die Maus darüber bewegt. (Im Übrigen kann dieser Fehler in Web-Tests mit <a href="https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html" target="_blank">Selenium</a> oder <a href="https://marketsquare.github.io/robotframework-browser/Browser.html" target="_blank">Playwright</a> nicht vorkommen!) 
 
 Wieder in Gelb dargestellt: die Pixel, die nicht mit dem Referenzbild übereinstimmen: 
 
@@ -152,62 +152,63 @@ In der Integrationsphase fiel auf, dass von dem Robot-Test, der das Laden der La
 
 *Kann doch nicht sein*, denkt man sich und prüft gewissenhaft die Logs. Es sah alles gut aus. 
 
-Und natürlich fummelte ich an der `confidence` :-) Aber ohne Feedback, *was genau* **IHL** erkennt, war das totaler Blindflug. Die Ergebnisse wurden nur noch schlechter. 
+Und natürlich fummelte ich an der `confidence`. :-) Aber ohne Feedback, *was genau* **IHL** erkennt, war das totaler Blindflug. Die Ergebnisse wurden nur noch schlechter. 
 
-In meiner Verzweiflung erweiterte ich den Test, sodass er unmittelbar vor der Erkennung partial Screenshots (ein cooles Feature der [Screencap Library](https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html)) von exakt der zu erkennenden Kartenregion anlegte.
+Im Rahmen meiner Fehlersuche erweiterte ich daraufhin den Test, sodass er unmittelbar vor der Erkennung partial Screenshots (ein cooles Feature der <a href="https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html" target="_blank">Screencap Library</a>) von exakt der zu erkennenden Kartenregion anlegte.
 
-Hier zwei solcher Bilder der Landeskarte, die augenscheinlich - auch bei extremer Vergrößerung - absolut gleich scheinen: 
+Hier zwei solcher Bilder der Landeskarte, die augenscheinlich - auch bei extremer Vergrößerung - absolut gleich aussehen: 
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-highwaymap.png" >}}
 
 Nach einiger Zeit verglich ich dann die MD5-Prüfsummen der angelegten Screenshots von den Maps, **wie sie tatsächlich angezeigt wurden**. 
 
-**Ich staunte nicht schlecht**: ein kleiner Teil der Prüfsummen war auf den drei Testhosts tatsächlich stets unterschiedlich! (Seht Euch die MD5-Hashes mal genau an: `b17` und `cd2` sind komplementär Ausreißer und Haupt-Hash!)
+**Ich staunte nicht schlecht**: ein kleiner Teil der Prüfsummen war auf den drei Testhosts tatsächlich stets unterschiedlich! (Seht euch die MD5-Hashes mal genau an: `b17` und `cd2` sind komplementär Ausreißer und Haupt-Hash!)
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-md5sumpng.png" >}}
 
 (Natürlich wünscht man sich in so einem Fall drei frisch aufgesetzte Test-Maschinen. Aber das Leben ist kein Ponyhof: neue VMs hätten Wochen gedauert...)
 
-Ich lud dann je ein Haupt-Bild und ein "Ausreißer" Bild in ein [Online-Tool für Bildvergleiche](https://online-image-comparison.com) hoch. 
+Ich lud dann je ein Haupt-Bild und ein "Ausreißer"-Bild in ein <a href="https://online-image-comparison.com" target="_blank">Online-Tool für Bildvergleiche</a> hoch.
 
-**Ein und die selbe Karte. Zwei Bilder.**
+
+**Ein und dieselbe Karte. Zwei Bilder.**
 (Damit keine Missverständnisse auftreten: die roten Pixel sind die Unterschiede... )
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-diff.png" >}}
 
 Ja, die Maps werden vereinzelt tatsächlich unterschiedlich vom Map-Provider geladen. Bei starker Vergrößerung sieht man an bestimmten Stellen eine **minimale Veränderung der Helligkeit**.  
 
-Ich darf sagen, dass ich an diesem Ergebnis zu knabbern hatte: wie kann ein und der gleiche Kartenausschnitt auf drei Testmaschinen in 3-5% der Fälle so unterschiedlich geladen werden? (Die Antwort werde ich vermutlich nie erfahren. Für mich war es ein wichtiges Learning, beim Debugging wirklich *jeden* Stein umzudrehen...)
+Ich darf sagen, dass ich an diesem Ergebnis zu knabbern hatte: wie kann ein und derselbe Kartenausschnitt auf drei Testmaschinen in 3-5% der Fälle so unterschiedlich geladen werden? (Die Antwort werde ich vermutlich nie erfahren. Für mich war es ein wichtiges Learning, beim Debugging wirklich *jeden* Stein umzudrehen...)
 
 ### Kantenerkennung to the rescue 
 
 Die zündende Idee kam vom Kollegen Frank Striegel (NOSER Engineering AG, CH): *Needle* und *Haystack* müssen vor dem Bildvergleich jeweils von solchem "Grundrauschen" (woher auch immer es kommt) bereinigt werden.  
 
-Aus seinem Protypen heraus entwickelte ich ein custom Keyword, welches mit Hilfe des [skimage-Frameworks für Python](scikit-image.org/docs/) beide Bilder mit Kantenerkennung vorverarbeitet und die daraus resultierenden Bilder zum Vergleich heranzieht. Es funktionierte. 
+Aus seinem Protypen heraus entwickelte ich ein custom Keyword, welches mit Hilfe des <a href="https://scikit-image.org/docs/" target="_blank">skimage-Frameworks für Python</a> beide Bilder vorab mit Kantenerkennung verarbeitet und die daraus resultierenden Bilder zum Vergleich heranzieht. Es funktionierte. 
 
 ## Erweiterung der ImageHorizon-Library mit skimage
 
-Vorweg: Die Idee, eine komplett neue Library zu schreiben, war schnell vom Tisch. Die ImageHorizonLibrary ist eine hervorragende Library für RobotFramework, die ich allein wegen ihres Unterbaus (Pyautogui, das war's) schätze. Zum Vergleich: die [SikuliXLibrary für Robot Framework](https://github.com/rainmanwy/robotframework-SikuliLibrary) erfordert Java (!) und einen "JRobot Remote Server" (!!) zu Übersetzung der Python-Keywords in Java-Kommandos. 
+Vorweg: Die Idee, eine komplett neue Library zu schreiben, war schnell vom Tisch. Die ImageHorizonLibrary ist eine hervorragende Library für RobotFramework, die ich allein wegen ihres Unterbaus (Pyautogui, das war's) schätze. Zum Vergleich: die <a href="https://github.com/rainmanwy/robotframework-SikuliLibrary" target="_blank">SikuliXLibrary für Robot Framework</a> erfordert Java (!) und einen "JRobot Remote Server" (!!) zu Übersetzung der Python-Keywords in Java-Kommandos. 
 
-Zusammen mit Frank's Kollegen Gautam (ebenfalls NOSER AG) habe ich in den letzten Wochen intensiv an einer Erweiterung der ImageHorizonLibrary programmiert, welche die Möglichkeit bietet, Kantenerkennung in End2End-Tests einzusetzen. Wir sind kurz davor, den **Pullrequest** an Eficode zu stellen und auch mächtig gespannt, ob er angenommen wird :-) 
+Zusammen mit Franks Kollege Gautam (ebenfalls NOSER AG) habe ich in den letzten Wochen intensiv an einer Erweiterung der ImageHorizonLibrary programmiert, welche die Möglichkeit bietet, Kantenerkennung in End2End-Tests einzusetzen. Wir sind kurz davor, den **Pullrequest** an Eficode zu stellen und auch mächtig gespannt, ob er angenommen wird. :-) 
 
 ### Kantenerkennung in a nutshell
 
-Wie Edge detection genau funktioniert, ist vielfach im Netz beschrieben. Der von uns eingesetzte "**Canny-Algorithmus**" (entwickelt von John Francis Canny, 1986, ganz hervorragend dokumentiert [hier](https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123)) unterteilt sich in **diese fünf Schritte**: 
+Wie Edge detection genau funktioniert, ist vielfach im Netz beschrieben. Der von uns eingesetzte "**Canny-Algorithmus**" (entwickelt von John Francis Canny, 1986, ganz hervorragend dokumentiert <a href="https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123" target="_blank">hier</a>) unterteilt sich in diese fünf Schritte: 
 
 1. **Gaußscher Weichzeichner**, um Rauschen und Unreinheiten zu reduzieren. Der `sigma`-Parameter bestimmt die Stärke des Filters. 
-2. **Sobel'sche Kantenerkennung**: Bestimmung des Helligkeitsverlaufes in x- und y-Richtung; bestimmung der Peaks durch Ableitung.  
-3. **non-max-suppression**: garantiert 1px breite Kanten durch Entfernen von nicht relevanten Kanten
+2. **Sobel'sche Kantenerkennung**: Bestimmung des Helligkeitsverlaufes in x- und y-Richtung; Bestimmung der Peaks durch Ableitung  
+3. **non-max-suppression**: garantiert 1px breite Kanten durch Entfernen von nicht relevanten Pixeln
 4. **Double threshold**: Klassifizierung von Kanten-Pixeln in strong, weak und low candidates
 5. **Hysterese**: Entfernung von weak candidates, bzw. Zuteilung zu benachbarten candidates. 
 
-Wie sich der `sigma`-Parameter von Schritt 1 auf die final erkannten Kanten auswirkt, ist anschaulich dargestellt auf [Wikipedia](https://en.wikipedia.org/wiki/Gaussian_blur#Edge_detection):  
+Wie sich der `sigma`-Parameter von Schritt 1 auf die final erkannten Kanten auswirkt, ist anschaulich dargestellt auf <a href="https://en.wikipedia.org/wiki/Gaussian_blur#Edge_detection" target="_blank">Wikipedia</a>:  
 
    {{< image alt="XXXX" src="images/post/ihl-skimage-pr-gaussian.gif" >}} 
 
 ### Die Skimage-Strategie
 
-Die von uns erweiterte **IHL** ist voll kompatibel zur bestehenden Version. Ich habe unter Anwendung des [Strategy](https://refactoring.guru/design-patterns/strategy)-Design-Patterns dafür gesorgt, dass der Eingriff in den Code so minimal wie möglich erfolgt. 
+Die von uns erweiterte **IHL** ist voll kompatibel zur bestehenden Version. Ich habe unter Anwendung des <a href="https://refactoring.guru/design-patterns/strategy" target="_blank">Strategy</a>-Design-Patterns dafür gesorgt, dass der Eingriff in den Code so minimal wie möglich erfolgt. 
 
 Wird die **IHL** also geladen wie gehabt, so ändert sich nichts: 
 
@@ -221,24 +222,24 @@ Nun angenommen, ein *Needle*-Bild wird wegen zu starker Abweichungen nicht zuver
 
     Set Strategy  skimage
 
-Alle bestehenden Keywords der **IHL** arbeiten ab diesem Moment mit der Bilderkennung auf Basies der edge detection. 
+Alle bestehenden Keywords der **IHL** arbeiten ab diesem Moment mit der Bilderkennung auf Basis der edge detection. 
 
 Auch die skimage-Strategie erlaubt den Einsatz der `confidence`, um beim Vergleich der Bilder aus der Kantenerkennung *zusätzlich* noch einen prozentualen Toleranzwert zu erlauben. Ob das allerdings noch notwendig ist, bezweifeln wir, denn die Bilder sind ja bereits bereinigt. 
 
 ### Der Image Debugger 
 
-Bliebe es beim bisher vorgestellten, so besäße die **IHL** nun eine weitere Erkennungsstrategie, die zwar "irgendwie besser" arbeitet, deren Arbeitsweise aber ebenfalls nicht nachvollziehbar ist.  
+Bliebe es beim bisher Vorgestellten, so besäße die **IHL** nun eine weitere Erkennungsstrategie, die zwar "irgendwie besser" arbeitet, deren Arbeitsweise aber ebenfalls nicht nachvollziehbar ist.  
 
-Damit in beiden Strategien die `confidence` und in skimage auch noch weitere Parameter feinjustiert werden können, wurde ein neues Keyword `Debug Image` geschaffen. Es kann direkt vor der Stelle im Test eingesetzt werden, wo ein Referenzbild () nicht zuverlässig funktionieren will. 
+Damit in beiden Strategien die `confidence` und in skimage auch noch weitere Parameter feinjustiert werden können, wurde ein neues Keyword `Debug Image` geschaffen. Es kann direkt vor der Stelle im Test eingesetzt werden, wo ein Referenzbild nicht zuverlässig funktionieren will. 
 
 ```
 Debug Image
 Click Image  image_varying
 ```
 
-Nach einem Neustart der Robot-Suite wird der Test nun an exakt der problematischen Stelle anhalten und die **ImageHorizon-Debugger-GUI** öffnen, welche [Gautam Ilango](https://github.com/gautamilango) entwickelt hat. 
+Nach einem Neustart der Robot-Suite wird der Test nun an exakt der problematischen Stelle anhalten und die **ImageHorizon-Debugger-GUI** öffnen, welche Gautam Ilango entwickelt hat. 
 
-Von hier aus wählt man das *Needle*-Bild aus dem [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
+Von hier aus wählt man das *Needle*-Bild aus dem <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html" target="_blank">reference_folder</a>: 
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-debug-selectimage.png" >}}
 
@@ -273,9 +274,9 @@ Die Debugger-Gui bietet die entsprechende Zeile zum Umstellen der Strategie als 
 
 Unsere Erweiterung der **ImageHorizonLibrary** durch **Kantenerkennung** ermöglicht das Testen von Applikationen auch dann, wenn das *Haystack*-Bild durch **Bildkompression**, **Schriftglättung** o.ä. "optimiert" bzw. "verfälscht" wurde (das liegt im Auge des Betrachters...), oder gar durch **dynamisch nachgeladene Inhalte** nicht 100% vorhersehbar ist (wie am Bespiel der Autobahn-Operator-Software zu sehen). 
 
-Wir (Gautam und ich) sind sehr stolz auf diese Weiterentwicklung, die wir [Eficode](https://www.eficode.com) nun in Kürze in Form eines **Pullrequests auf Github** vorlegen werden.   
+Wir (Gautam und ich) sind sehr stolz auf diese Weiterentwicklung, die wir Eficode nun in Kürze in Form eines **Pullrequests auf Github** vorlegen werden.   
 
 
 ## Danke an ABRAXAS Informatik AG
 
-Und wieder einmal ein großes Dankeschön an die [ABRAXAS Informatik AG (CH)](https://abraxas.ch) für die wirklich **hervorragende Zusammenarbeit**, Eure **Offenheit** gegenüber **Open-Source-Entwicklungen** und letztlich die **finanziellen Mittel**, ohne die das alles nicht möglich wäre. 
+Und wieder einmal ein großes Dankeschön an die <a href="https://abraxas.ch" target="_blank">ABRAXAS Informatik AG (CH)</a> für die wirklich hervorragende Zusammenarbeit, eure Offenheit gegenüber Open-Source-Entwicklungen und letztlich die finanziellen Mittel, ohne die das alles nicht möglich wäre. 
