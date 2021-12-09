@@ -51,7 +51,7 @@ Im Keyword `Click Image` passiert nun folgendes:
 3. Suchen der Nadel im Heuhaufen
 
 {{< notice "info" >}}
-**Hintergrundinfo**: Bilder werden in der Informatik dargestellt als eine [Matrix aus Zahlen](https://www.analyticsvidhya.com/blog/2019/09/9-powerful-tricks-for-working-image-data-skimage-python/). Diese Zahlen beschreiben die Intensität eines jeden Pixels im Gesamtbild. Im Gegensatz zu Graustufenbildern (1 Wert pro Pixel) sind RGB-Bilder eine Matrix aus 3 Werten pro Pixel. <br>
+**Hintergrundinfo**: Bilder werden in der Informatik dargestellt als eine <a href="https://www.analyticsvidhya.com/blog/2019/09/9-powerful-tricks-for-working-image-data-skimage-python/" target="_blank">Matrix aus Zahlen</a>. Diese Zahlen beschreiben die Intensität eines jeden Pixels im Gesamtbild. Im Gegensatz zu Graustufenbildern (1 Wert pro Pixel) sind RGB-Bilder eine Matrix aus 3 Werten pro Pixel. <br>
 Die "Suche" eines Referenzbildes im Gesamtbild besteht also aus der mathematischen Aufgabe, die Koordinate einer (Sub-)Matrix innerhalb einer anderen zu bestimmen. 
 {{< /notice >}}
  
@@ -70,7 +70,7 @@ Auf den ersten Blick scheint das Szenario von Pixel-Abweichungen konstruiert: ma
 - **Schriftglättung** (Font-Antialiasing): Schriftarten sind vektorbasiert, Computerdisplays aber rasterbasiert. Anti-Aliasing ist vereinfacht gesagt das, was der Computer unternehmen kann, wenn eine darzustellende Schriftlinie nicht exakt in das Raster der Bildschirms passt. Er errechnet dann weitere Pixel in Zwischentönen, sodass die Schrift für das menschliche Auge "weich" aussieht und leichter zu lesen ist.  
   Siehe <a href="https://en.wikipedia.org/wiki/Font_rasterization" target="_blank">Wikipedia</a>:  
   {{< image alt="XXXX" src="images/post/ihl-skimage-pr.md-fontantialiasing.png">}}  
-- **Bonus-Grund Nr. 3**: Fremd-Quellen. Dazu später mehr.
+- **Bonus-Grund Nr. 3**: Fremd-Quellen. Dazu später mehr (Praxisbeispiel).
 
 Mit diesen Problemen hatten wohl auch schon die Autoren der ImageHorizonLibrary, <a href="https://www.eficode.com" target="_blank">Eficode</a>, zu tun; jedenfalls beinhaltet die **IHL** die Möglichkeit, einen Wert namens `confidence` zu setzen (Keyword: <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Set%20Confidence" target="_blank">Set Confidence</a>). `confidence` ist ein Wert zwischen `0` und `0.99` und beschreibt, wieviel Prozent des Referenzbildes (*Needle*) im Suchbild (*Haystack*) enthalten sein müssen - oder anders ausgedrückt: wie viele Augen die Library bei der Bilderkennung zudrücken darf.
 
@@ -107,7 +107,7 @@ Wir haben einen üblen Verdacht: Schriftartglättung! Also drehen wir am `confid
 
 **Der Test schlägt immer noch fehl.**
 
-Wir setzen `confidence` auf `0.8` herab und siehe da - **IHL** erkennt den Buchstaben wieder. Die im folgenden Bild gelb markierten Pixel sind die, welche **IHL** beim Bildvergleich als nicht mit der Region im Originalbild übereinstimmend erkannt hat. Das sind 19 Pixel von 100 und damit sind wir *gerade noch* unter der confidence von 20%: 
+Wir setzen `confidence` auf `0.8` herab und siehe da - **IHL** erkennt den Buchstaben wieder. Die im folgenden Bild gelb markierten Pixel sind die, welche **IHL** beim Bildvergleich als nicht mit der Region im Originalbild übereinstimmend erkannt hat. Das sind 19 Pixel von 100 und damit sind wir *gerade noch* unter der Toleranz von 20%: 
 
 {{< image src="images/post/ihl-skimage-pr-a-20.png">}}
 
@@ -144,7 +144,7 @@ In der Praxis jedoch ist der *Haystack* ein ganzer Bildschirm, in dem es Dutzend
 
 ### Praxisbeispiel (dreh wirklich jeden Stein um...)
 
-Diesen Fall möchte ich gerne mit einem Beispiel aus der Praxis untermauern. Und dieses Beispiel zeigt wieder einmal, dass man nichts als gegeben hinnehmen sollte. 
+Diesen Fall möchte ich gerne mit einem Beispiel aus einem Kundenprojekt untermauern. Und dieses Beispiel zeigt wieder einmal, dass man nichts als gegeben hinnehmen sollte. 
 
 Ich hatte mit Robotmk einen End2End-Test für eine **Autobahn-Management-Software** implementiert. 
 

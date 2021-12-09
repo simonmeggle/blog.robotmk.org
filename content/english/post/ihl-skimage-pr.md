@@ -12,7 +12,7 @@ type: "regular" # available type (regular or featured)
 draft: false
 ---
 
-(Note: instead of [ImageHorizonLibrary](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html) I am using the acronym **IHL**.)
+(Note: instead of <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html" target="_blank">ImageHorizonLibrary</a> I am using the acronym **IHL**.)
 
 ## TL'DR
 
@@ -21,14 +21,14 @@ draft: false
 * Libraries like **IHL** allow smaller pixel deviations by accepting an additional tolerance parameter (`confidence`, `tolerance`, `similarity`...).
 * **Obviously identical images with massive pixels of minimum deviations are still a problem, though.**
 * "Canny edge detection" is a proven method to extract only the lines from images which describe areas with high contrast. 
-* [Gautam Ilango](https://github.com/gautamilango) and me are filing a pull request to the **IHL** which adds this method as an additional strategy. 
+* <a href="https://github.com/gautamilango" target="_blank">Gautam Ilango</a> and me are filing a pull request to the **IHL** which adds this method as an additional strategy. 
 
 
 ## Basics: This is how the image recognition works
 
-The [Robot Framework](https://robotframework.org/) library **ImageHorizon** is written on top of the Python module [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/). With this module, mouse and keyboard can be controlled on Linux, Mac and Windows. Thanks to the **IHL**, this technology can be used in Robot Framework tests - for example in end2end monitoring with Robotmk.
+The <a href="https://robotframework.org/" target="_blank">Robot Framework</a> library **ImageHorizon** is based on the Python module <a href="https://pyautogui.readthedocs.io/en/latest/" target="_blank">PyAutoGUI</a>. With this module, mouse and keyboard can be automatically controlled on Linux, Mac and Windows. Thanks to the **IHL**, this technology can be used in Robot Framework tests, for example in end2end monitoring with Robotmk.
 
-So that the library knows where it should move the mouse pointer to (e.g., to complete a click), it must first search this target region with a so called *reference picture*.
+To ensure that the library knows where it should move the mouse pointer to (e.g., to complete a click), it must first search this target region with a so called *reference picture*.
 
 Let's take this dialog box as an example:
 
@@ -38,7 +38,7 @@ For pressing the button "Nicht speichern" ('do not save'), the library needs to 
 
 {{< image title="Das Referenzbild in Originalqualität" src="images/post/ihl-skimage-pr-nicht-speichern.png" >}}
 
-Within the test, the **IHL** keyword  `Click Image` ([Link](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Click%20Image)) is used: the only argument it needs is the name of the reference image (without its extension): 
+Within the test, the **IHL** keyword  `Click Image` (<a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Click%20Image" target="_blank">Link</a>) is used: the only argument it needs is the name of the reference image (without its extension): 
 
 ```robot
     Click Image  nicht_speichern
@@ -46,12 +46,12 @@ Within the test, the **IHL** keyword  `Click Image` ([Link](https://eficode.gith
 
 The keyword `Click Image` works as follows: 
 
-1. It creates a screenshot of the current screen ("*haystack*")
-2. It loads the reference image ("*needle*") 
-3. It searches the needle within the haystack
+1. create a screenshot of the current screen ("*haystack*")
+2. load the reference image ("*needle*") 
+3. searche the needle within the haystack
 
 {{< notice "info" >}}
-**Side note**: In programming, images are represented as a [matrix of numbers](https://www.analyticsvidhya.com/blog/2019/09/9-powerful-tricks-for-working-image-data-skimage-python/). 
+**Side note**: In programming, images are represented as a <a href="https://www.analyticsvidhya.com/blog/2019/09/9-powerful-tricks-for-working-image-data-skimage-python/" target="_blank">matrix of numbers</a>. 
 These numbers describe the intensity of each pixel in the picture. In contrast to grayscale images (which have 1 value per pixel), RGB images are represented by a matrix of 3 values per pixel.  
 "Searching" a reference image in the haystack image is therefore the mathematical task to determine the coordinate of a (sub) matrix within another (bigger) matrix.
 {{< /notice >}}
@@ -61,18 +61,18 @@ These numbers describe the intensity of each pixel in the picture. In contrast t
 The procedure described above works as long as the *needle* matrix exists exactly within the *haystack*.  
 Even one different RGB value (e.g. `(233,40,22)` instead of `(233,41,22)`) ends in an empty result. Game Over. Test FAILED.  
 
-> *"Deviation ..." Hold on - either an application runs or it doesn't. How should can a **deviation of individual pixels** happen?"*
+> *"Deviation ..." Hold on - either an application runs or it doesn't. How should a **deviation of individual pixels** happen?"*
 
-At first glance the scenario of pixel deviations seems to be fallacious: one would like to believe that the *haystack* images are comppletely predictable. This is why you should not rely on that: 
+At first glance the scenario of pixel deviations seems to be absurd: one would like to believe that the *haystack* images are completely predictable. This is why you should not rely on that: 
 
 - **Image compression**: It is common practice that End2End monitoring connects to the applications via RDP or Citrix (for example to measure the performance of remote connections).  
-  Such systems are often preconfigured to dynamically compress the transferred screen data to make working over lame network connections possible. User won't complain about the artifacts, but End2End-Tests will fail. {{< image src="images/post/ihl-skimage-pr-nicht-speichern-komprimiert.jpg" >}}
-- **Font Anti-Aliasing** (also: "font-smoothing"): computer fonts are vector based, whereas monitors are raster based. Anti-Aliasing is used by the computer to make the line of a font to be "between" two pixels. This adds artificial halftone pixels to the displayed text which make the test to appear more smoother and readable. 
-  See [Wikipedia](https://en.wikipedia.org/wiki/Font_rasterization) for ore information:  
+  Such systems are often preconfigured to dynamically compress the transferred screen data to make working over lame network connections possible. User won't notice the resultant artifacts, but End2End-Tests will fail. {{< image src="images/post/ihl-skimage-pr-nicht-speichern-komprimiert.jpg" >}}
+- **Font Anti-Aliasing** (also: "font-smoothing"): computer fonts are vector based, whereas monitors are raster based. Anti-Aliasing is used by the computer to make the line of a font to be "between" two pixels. This adds artificial halftone pixels to the displayed text which make the test to appear smoother and easily readable. 
+  See <a href="https://en.wikipedia.org/wiki/Font_rasterization" target="_blank">Wikipedia</a> for more information:  
   {{< image src="images/post/ihl-skimage-pr.md-fontantialiasing.png">}}  
-- **Bonus-Grund Nr. 3**: 3rd party sources. Stay tuned.
+- **Bonus reason no. 3**: 3rd party sources. See practical example below.
 
-I guess these were the problems which the authors of the **ImageHorizonLibrary** ([Eficode](https://www.eficode.com)) faced; anyway, the **IHL** provides an option called `confidence` (Keyword: [Set Confidence](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Set%20Confidence)). `confidence` is a value between `0..0.99` and describes how many percent of the *needle* image have to be contained in the *haystack* image. 
+I guess these were the problems which the authors of the **ImageHorizonLibrary**, <a href="https://www.eficode.com" target="_blank">Eficode</a>, faced; anyway, the **IHL** provides an option called `confidence` (Keyword: <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html#Set%20Confidence" target="_blank">Set Confidence</a>). `confidence` is a value between `0` and `0.99` and describes how many percent of the *needle* image have to be contained in the *haystack* image. 
 
 ```
 # Setting confidence during library import
@@ -105,7 +105,7 @@ We have a bad suspicion: font smoothing! We lower the `confidence` value to `0.9
 
 **The test still fails.**
 
-Again we lower `confidence` to `0.8` and - horray: **IHL** recognizes the letter again. The non-matching pixels are shown in the following image in yellow. That are 19 pixels of 100, which means we are *just below* the confidence of 20%: 
+Again we lower `confidence` to `0.8` and - horray: **IHL** recognizes the letter again. The non-matching pixels are shown in the following image in yellow. That are 19 pixels of 100, which means we are *just below* the tolerance of 20%: 
 
 {{< image src="images/post/ihl-skimage-pr-a-20.png">}}
 
@@ -114,56 +114,58 @@ Again we lower `confidence` to `0.8` and - horray: **IHL** recognizes the letter
 **Small pixel deviations can be catched by carefully lowering the `confidence` level.**
 
 {{< notice "tip" >}}
-Always make sure that the configuratoin of systems you are executing End2End tests follows a strict scheme. 
+Always make sure that the configuration of systems you are using for execution of End2End tests follows a strict scheme. 
 {{< /notice >}}
 
-## The danger of massive pixel derivations
+## The danger of massive pixel deviations
 
-All examples shown so far were executed with the image recognition method of **ImageHorizonLibrary**, which is based on `pyautogui`. 
+All examples shown so far, with small pixel deviations, were executed with the image recognition method of **ImageHorizonLibrary**, which is based on `pyautogui`. 
 
-What about **larger pixel derivations**? 
+What about **larger pixel deviations**? 
 
 > *Even larger...? Come on.*
 
+**Yes**. That happens.
+
 ### Why confidence can fail
 
-Let's pick up the last example and assume that the letter should also be recognized when its **background color** changes. This happens for example when the mouse pointer "hovers" over a button. (Apart from that, this error cannot happen in web based tests done with [Selenium](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html) or [Playwright](https://marketsquare.github.io/robotframework-browser/Browser.html)!)
+Let's pick up the last example and assume that the letter should also be recognized when its **background color** changes. This happens for example when the mouse pointer "hovers" over a button. (Apart from that, this error cannot happen in web based tests done with <a href="https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html" target="_blank">Selenium</a> or <a href="https://marketsquare.github.io/robotframework-browser/Browser.html" target="_blank">Playwright</a>!)
 
 Again, in yellow: the pixels which do not match with the reference image: 
 
 {{< image src="images/post/ihl-skimage-pr-a-all.png">}}{{< image src="images/post/ihl-skimage-pr-a.png">}}
 
-**3/4 of the upper image is different from the original image below. Only 23% of the pixels match.**
+**3/4 of the upper image is different from the original image below.** Only 23% of the pixels match.
 
-In terms of figures also a `confidence` value of `0.2` works (assuming that the *haystack* image is as small like that). But in practice, the *haystack* is always a full screen, where the algorithm will find dozens of matching regions!
+In purely arithmetical terms also a `confidence` value of `0.2` works (assuming that the *haystack* image is as small like that). But in practice, the *haystack* is always a full screen, where the algorithm will find dozens of matching regions!
 
 ### Practical example (turn every stone...)
 
 I want to substantiate this case with an example from a customer project. Lession learned: don't take anything as granted. 
 
-I had implemented an Robotmk End2End monitoring test for a **highway management application**.
+I had implemented a Robotmk End2End monitoring test for a **highway management application**.
 
-During the integration phase I discovered that the test which should check the proper loading of the map **failed in 3-5% of the executions**. The only error I got: *Image not found.*
+During the integration phase, I discovered that the test which should check the proper loading of the map **failed in 3-5% of the executions**. The only error I got: *Image not found.*
 
-*Not seriously*, one thinks, conscientuous checking all the logs. But without any new finding.  
+*Not seriously*, I thought, conscientiously checking all the logs. But without any new finding.  
 
-And of course, I also fiddled around with `confidence` :-) But it was painful to have no feedback about what the library  exaclty detects. In contrast, the results even got worse. 
+And of course, I also fiddled around with `confidence`. :-) But it was painful to have no feedback about what the library exactly detected. The results got even worse. 
 
-In my desperation I expanded the test so that on every run it took a partial screenshot (btw, a really cool feature of [Screencap Library](https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html)) of exactly the map region which should be checked. 
+In the course of my error search I expanded the test so that on every run it first took a partial screenshot (btw, a really cool feature of <a href="https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html" target="_blank">Screencap Library</a>) of exactly the map region which should be checked. 
 
-The following two images obviously seem to be identical, even when zooming in: 
+The following two images obviously seem to be fully identical, even when zooming in: 
 
 {{< image src="images/post/ihl-skimage-pr-highwaymap.png" >}}
 
 After some time, I compared the MD5 checksums of all those screenshots. 
 
-**I was pretty astonished**: indeed, a small amount of the checksums, taken on three differen hosts, were different! (Look at the `b17` und `cd2` sums...!) 
+**I was pretty astonished**: indeed, a small amount of the checksums, taken on three different hosts, were different! (Look at the `b17` und `cd2` sums...!) 
 
 {{< image src="images/post/ihl-skimage-pr-md5sumpng.png" >}}
 
 (Yes, of course: replacing those aged test VMs with fresh ones would probably have resolved the issue or at least provided more insights. But they would have taken too long to order....)
 
-I then uploaded both images to an [online image comparison service](https://online-image-comparison.com).
+I then uploaded both images to an <a href="https://online-image-comparison.com" target="_blank">online image comparison service</a>.
 
 **One and the same Map. Two images.**
 (To avoid misinterpretations: the red pixels are the differences... )
@@ -176,33 +178,34 @@ But... why? I won't find out the solution to that question. I just learned somet
 
 ### Edge detection to the rescue 
 
-The brilliant idea came from colleague Frank Striegel (Noser Engineering AG, CH): *needle* and *haystack* have to be *processed* before the image comparison to remove all "ambient noise" (whereever it may come from).
-Based on this prototype I developed a custom keyword which pre-processes both images with the edge detection algorithm from the [skimage framework for Python](scikit-image.org/docs/).
-The comparison is done the on the edge images. It worked pretty well. 
+The brilliant idea came from colleague Frank Striegel (Noser Engineering AG, CH): *needle* and *haystack* have to be *processed* before the image comparison to remove all "ambient noise" (wherever it may come from).
+
+Based on his prototype, I developed a custom keyword which pre-processes both images with the edge detection algorithm from the <a href="https://scikit-image.org/docs/" target="_blank">skimage framework for Python</a>.
+The comparison is then done the on the resulting images. It worked pretty well. 
 
 ## Extending the ImageHorizonLibrary with skimage
 
-Soon I rejected the idea to write a complete new library for that use case. **IHL** is such a great library and I had implemented a lot of tests with it. I simply like it because of its dependencies (Pyautogui, that's all). For comparison only: : the [SikuliXLibrary for Robot Framework](https://github.com/rainmanwy/robotframework-SikuliLibrary) requires Java (!) and a "JRobot Remote Server" (!!) in order to translate the Python Keywords into Java commands. 
+Soon I rejected the idea to write a complete new library for that use case. **IHL** is such a great library and I had implemented a lot of tests with it. I simply like it because of its substructure (Pyautogui, that's all). For comparison only: the <a href="https://github.com/rainmanwy/robotframework-SikuliLibrary" target="_blank">SikuliXLibrary for Robot Framework</a> requires Java (!) and a "JRobot Remote Server" (!!) in order to translate the Python Keywords into Java commands. 
 
-During the last weeks, [Gautam Ilango](https://github.com/gautamilango) and I intensively worked on an extension of the **ImageHorizonLibrary**. It offers the great possibility to use edge detection for image detection in End2End tests. Now we are close to send a **pull request** to Eficode - and we are very curious about their reponse! :-) 
+During the last weeks, Gautam Ilango and I intensively worked on an extension of the **ImageHorizonLibrary**. It offers the great possibility to use edge detection in End2End tests. Now we are close to send a **pull request** to Eficode - and we are very curious about their reponse! :-) 
 
 ### Canny edge detection in a nutshell
 
-You can find a lot of information about the edge detection algorithm in the internet. We are using the so-called "**Canny Edge Detection**" algorithm (developed by John Francis Canny in 1986, brilliantly explained [here](https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123)). It consists of those **five steps**:
+You can find a lot of information about the edge detection algorithm in the internet. We are using the so-called "**Canny Edge Detection**" algorithm (developed by John Francis Canny in 1986, brilliantly explained <a href="https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123" target="_blank">here</a>). It consists of those **five steps**:
 
 1. **Gaussian blur** to reduce noise. The `sigma` parameter defines the intensity of the filter.
-2. **Sobel'sche Kantenerkennung**: Bestimmung des Helligkeitsverlaufes in x- und y-Richtung; bestimmung der Peaks durch Ableitung.  
-3. **non-max-suppression**: garantiert 1px breite Kanten durch Entfernen von nicht relevanten Kanten
-4. **Double threshold**: Klassifizierung von Kanten-Pixeln in strong, weak und low candidates
-5. **Hysterese**: Entfernung von weak candidates, bzw. Zuteilung zu benachbarten candidates. 
+2. **edge detection according to Sobel**: determination of the brightness curve along the x and y axes; determination of peaks by derivation 
+3. **non-max-suppression**: edges of a guaranteed width of 1px by removing irrelevant edges
+4. **Double threshold**: classification of egde pixels into strong, weak and low candidates
+5. **Hysterese**: removing weak candidates respectively allocating them to adjacent candidates
 
-The effect of the `sigma` parameter in step 1 on the detected edges is shown on [Wikipedia](https://en.wikipedia.org/wiki/Gaussian_blur#Edge_detection):  
+The effect of the `sigma` parameter in step 1 on the detected edges is shown on <a href="https://en.wikipedia.org/wiki/Gaussian_blur#Edge_detection" target="_blank">Wikipedia</a>:  
 
    {{< image src="images/post/ihl-skimage-pr-gaussian.gif" >}}
 
 ### The strategy "skimage"
 
-Our extended version of the **IHL** is fully compatible to the existing version. Using the "[Strategy](https://refactoring.guru/design-patterns/strategy)" design pattern I was able to make the adaption as less invasive as possible. 
+Our extended version of the **IHL** is fully compatible to the existing version. Using the "<a href="https://refactoring.guru/design-patterns/strategy" target="_blank">Strategy</a>" design pattern I was able to make the adaption as less invasive as possible. 
 
 If you import the **IHL** library as usual, nothing changes: 
 
@@ -218,7 +221,7 @@ Now let's say that a *needle* image cannot be found in the *haystack* because of
 
 From that moment on, all existing keywords of the **IHL** are using edge detection for image recognition. 
 
-As in Pyautogui, `confidence` is also allowed here. But we doubt that this is necessary because the images are still cleaned. There should not be any pixel deviations at this time anymore.
+As in PyautoGUI, `confidence` is also allowed here. But we doubt that this is necessary because the images are still cleaned. There should not be any pixel deviations at this time anymore.
 
 ### The image debugger 
 
@@ -231,9 +234,9 @@ Debug Image
 Click Image  image_varying
 ```
 
-After the suite restart, the test will pause at the problematic position and open the **ImageHorizon-Debugger-GUI**, which was crafted by [Gautam Ilango](https://github.com/gautamilango).
+After the suite restart, the test will pause at the problematic position and open the **ImageHorizon-Debugger-GUI**, which was crafted by Gautam Ilango.
 
-The debugger allows to select the *needle* image from the [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
+The debugger allows to select the *needle* image from the <a href="https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html" target="_blank">reference_folder</a>: 
 
 {{< image src="images/post/ihl-skimage-pr-debug-selectimage.png" >}}
 
@@ -254,9 +257,9 @@ After the click on "**Edge detection debugger**" things get really interesting: 
 
 {{< image src="images/post/ihl-skimage-pr-figure.png" >}}
 
-Thanks to this visual feedback, `confidence` (and in case of skimage also `sigma`, `low_threshold` and `high_threshold`) can now be adjusted in a way, so that preferably only one single match can be achieved. 
+Thanks to this visual feedback, `confidence` (and in case of skimage also `sigma`, `low_threshold` and `high_threshold`) can now be adjusted in a way that preferably only one single match can be achieved. 
 
-If a proper setting was found, the appropriate Keyword including its arguments is ready to be copied and pasted right into the Robot Framework test code: 
+If a proper setting was found, the appropriate keyword including its arguments is ready to be copied and pasted right into the Robot Framework test code: 
 
 {{< image src="images/post/ihl-skimage-pr-command.png" >}}
 
@@ -266,12 +269,11 @@ If a proper setting was found, the appropriate Keyword including its arguments i
 
 ## Conclusion
 
-Our extension to the **ImageHorizonLibrary** makes application tests possible even if the *haystack* image was "optimized"/"falsified" (this is in the eye of the beholder...) due to **image compression, font smoothing** etc., or even if content from **external sources** cannot be taken as predictable (as shown in the example of the highway operator application).
+Our extension to the **ImageHorizonLibrary** makes application tests possible even if the *haystack* image was "optimized" or "falsified" (this is in the eye of the beholder...) due to **image compression, font smoothing** etc., or even if content from **external sources** cannot be taken as predictable (as shown in the example of the highway operator application).
 
-We (me and Gautam) are very proud about this further development which we will present
-[Eficode](https://www.eficode.com) in the form of a **pull request on Github**. 
+We (Gautam and me) are very proud about this further development which we will soon present Eficode in the form of a **pull request on Github**. 
 
 
-## Thank you, ABRAXAS Informatik AG
+## Thanks to ABRAXAS Informatik AG
 
-And again, a million thanks to [ABRAXAS Informatik AG (CH)](https://abraxas.ch) for the **excellent collaboration**, your candour for **Open Source Software** and last but not least the **financial resources**, which made all this possible.  
+And again, a million thanks to <a href="https://abraxas.ch" target="_blank">ABRAXAS Informatik AG (CH)</a> for the excellent collaboration, your candour for Open Source Software and last but not least the financial resources, which made all this possible.  
