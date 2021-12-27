@@ -1,4 +1,8 @@
 #!/bin/bash
+# Use github worktree to generate a HUGO site directly into another branch:
+# http://sangsoonam.github.io/2019/02/08/using-git-worktree-to-deploy-github-pages.html
+# https://github.com/mapstruct/mapstruct.org/blob/master/scripts/publish.sh
+
 directory=public
 branch=gh-pages
 build_command() {
