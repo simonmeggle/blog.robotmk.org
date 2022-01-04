@@ -18,6 +18,8 @@ git worktree add $directory $branch
 echo -e "\033[0;32mGenerating site...\033[0m"
 build_command
 
+echo -n "blog.robotmk.org" > $directory/CNAME
+
 echo -e "\033[0;32mDeploying $branch branch...\033[0m"
 cd $directory &&
   git add --all &&
