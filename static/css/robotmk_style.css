@@ -1,6 +1,5 @@
 header.bg-white {
     background-color: rgb(43,55,66)!important;
-    
 }
 header.bg-white a {
     color: azure!important;
@@ -22,7 +21,10 @@ main p::selection {
 
 main a {
     text-decoration: underline!important;
-    text-decoration-color: #00D391!important;
+}
+
+main a:hover {
+    color: #00D391!important;
 }
 
 /* show underline on hover */

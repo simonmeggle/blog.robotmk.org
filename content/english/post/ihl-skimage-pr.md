@@ -32,7 +32,7 @@ To ensure that the library knows where it should move the mouse pointer to (e.g.
 
 Let's take this dialog box as an example:
 
-{{< image src="ihl-skimage-pr-notepad-save.png" position="center" caption="An example dialogue" alt="example dialogue" position="center"  title="Image Title" >}}
+{{< image src="ihl-skimage-pr-notepad-save.png" position="center" caption="An example dialogue" alt="example dialogue" position="center"  title="Image Title" >}} 
 
 In order to press the button "*Nicht speichern*" ('do not save'), the library needs to search for a reference image (`nicht_speichern.png`) which you have to create in the project folder:
 
@@ -238,7 +238,8 @@ After the suite restart, the test will pause at the problematic position and ope
 
 The debugger allows to select the *needle* image from the [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
 
-{{< image src="images/post/ihl-skimage-pr-debug-selectimage.png" >}}
+
+{{< image src="ihl-skimage-pr-debug-selectimage.png" position="center" alt="example dialogue" position="center"  title="Image Title" >}} 
 
 Below of that the window has two panels: 
 
