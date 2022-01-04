@@ -32,9 +32,9 @@ To ensure that the library knows where it should move the mouse pointer to (e.g.
 
 Let's take this dialog box as an example:
 
-{{< image src="images/post/ihl-skimage-pr-notepad-save.png" >}}
+{{< image src="ihl-skimage-pr-notepad-save.png" position="center" caption="An example dialogue" alt="example dialogue" position="center"  title="Image Title" >}}
 
-For pressing the button "Nicht speichern" ('do not save'), the library needs to search for a reference image (`nicht_speichern.png`) which you have to create in the project folder:
+In order to press the button "*Nicht speichern*" ('do not save'), the library needs to search for a reference image (`nicht_speichern.png`) which you have to create in the project folder:
 
 {{< image title="Das Referenzbild in Originalqualität" src="images/post/ihl-skimage-pr-nicht-speichern.png" >}}
 

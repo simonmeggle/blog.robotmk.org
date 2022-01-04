@@ -12,6 +12,8 @@ description = "This is meta description"
 author = "Themefisher"
 image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
 page_not_found_image = "images/404.png" # 404 error page image
+# image gallery shortcode
+image_gallery = true
 # email address
 email = "georgia.young@example.com"
 # contact form action

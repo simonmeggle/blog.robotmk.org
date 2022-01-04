@@ -2,47 +2,45 @@
 
 body {
   line-height: 1.7;
-  font-family: $primary-font;
+  font-family: $font-primary;
   -webkit-font-smoothing: antialiased;
   color: $text-color;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 p, .paragraph {
   font-weight: 400;
   color: $text-color;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.7;
-  font-family: $primary-font;
+  font-family: $font-primary;
 }
 
 h1,h2,h3,h4,h5,h6 {
   color: $text-color-dark;
-  font-family: $secondary-font;
+  font-family: $font-secondary;
   font-weight: 600;
   line-height: 1.2;
 }
 
-h1, .h1{
-  font-size: 45px;
-}
 
-h2, .h2{
-  font-size: 36px;
-}
+// List in descending order to prevent extra sort function
+$type-levels: 6,5,4,3,2,1;
 
-h3, .h3{
-  font-size: 28px;
-}
+@each $level in $type-levels {
+  $font-size: $font-size * $font-scale;
 
-h4, .h4{
-  font-size: 22px;
-}
+  // Output heading styles
+  h#{$level},
+  .h#{$level} {
+    font-size: calc(#{$font-size} * .80);
+    line-height: calc(2px + 2ex + 2px);
+    margin-bottom: 0.65em;
 
-h5, .h5{
-  font-size: 18px;
-}
+    &:not(h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
+      font-size: calc(#{$font-size} * 1);
+    }
 
-h6, .h6{
-  font-size: 14px;
+ 
+  }
 }

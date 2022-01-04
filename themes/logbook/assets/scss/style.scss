@@ -1,6 +1,6 @@
 // Color Variables
 {{ with site.Params.variables }}
-$primary-color: {{.primary_color}};
+$color-primary: {{.color_primary}};
 $text-color: {{.text_color}};
 $text-color-dark: {{.text_color_dark}};
 $text-color-light: {{.text_color_light}};
@@ -11,8 +11,10 @@ $white: {{.white}};
 $light: {{.light}};
 
 // Font Variables
-$primary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .primary_font | default "Lato"}}', {{.primary_font_type | default "sans-serif"}};
-$secondary-font: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .secondary_font | default "Lato"}}', {{.secondary_font_type | default "sans-serif"}};
+$font-size: {{.font_size | default "16px"}};
+$font-scale: {{.font_scale | default "1.2"}};
+$font-primary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_primary | default "Lato"}}', {{.font_primary_type | default "sans-serif"}};
+$font-secondary: '{{ replaceRE ":[ital,]*wght@[0-9,;]+" "" .font_secondary | default "Lato"}}', {{.font_secondary_type | default "sans-serif"}};
 $icon-font: '{{.icon_font | default "Font Awesome 5 Free"}}';
 {{ end }}
 
@@ -25,5 +27,9 @@ $icon-font: '{{.icon_font | default "Font Awesome 5 Free"}}';
 @import 'common';
 
 @import 'templates/navigation.scss';
+
+{{ if site.Params.image_gallery }}
+@import 'templates/image_gallery.scss';
+{{ end }}
 
 @import 'templates/main.scss';

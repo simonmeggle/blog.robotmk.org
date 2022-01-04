@@ -1,10 +1,10 @@
 /* Button style */
 .btn {
-  font-size: 14px;
-  font-family: $primary-font;
+  font-size: 0.875rem;
+  font-family: $font-primary;
   text-transform: capitalize;
   padding: 8px 25px;
-  border-radius: 50px;
+  border-radius: 3.125rem;
   border: 1px solid;
   position: relative;
   z-index: 1;
@@ -20,32 +20,32 @@
 }
 
 .btn-primary {
-  background: $primary-color;
+  background: $color-primary;
   color: $white;
-  border-color: $primary-color;
+  border-color: $color-primary;
 
   &:active,
   &:hover,
   &.focus,
   &:focus,
   &.active {
-    background: $primary-color !important;
-    border-color: $primary-color !important;
+    background: $color-primary !important;
+    border-color: $color-primary !important;
   }
 }
 
 .btn-outline-primary {
   background: transparent;
   color: $text-color;
-  border-color: $primary-color;
+  border-color: $color-primary;
 
   &:active,
   &:hover,
   &.focus,
   &:focus,
   &.active {
-    background: $primary-color !important;
-    border-color: $primary-color !important;
+    background: $color-primary !important;
+    border-color: $color-primary !important;
     color: $white;
   }
 }

@@ -10,8 +10,8 @@
         {{ range first 1 .}}
         {{ if (fileExists (add `assets/` .)) }}
         {{ $image:= resources.Get . }}
-        {{ $imageFallback:= $image.Resize "60x60" }}
-        {{ $imageSM:= $image.Resize "60x60 webp" }}
+        {{ $imageFallback:= $image.Fill "60x60 center" }}
+        {{ $imageSM:= $image.Fill "60x60 center webp" }}
         <img loading="lazy" class="mr-3" src="{{$imageSM.Permalink}}" alt="post-thumb">
         {{ else }}
         <img loading="lazy" class="mr-3" src="{{ $imageFallback.RelPermalink }}" alt="post-thumb">

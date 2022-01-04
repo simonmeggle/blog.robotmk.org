@@ -1,22 +1,13 @@
-{{- $.Scratch.Add "index" slice -}}
-{{- range (where site.RegularPages "Section" "in" site.Params.mainSections) -}}
+{{ $.Scratch.Add "index" slice }}
+{{ range site.RegularPages }}
 
-  {{ with .Params.images }}
-  {{ range first 1 . }}
-  {{ if (fileExists (add `assets/` .)) }}
-  {{ $image:= resources.Get . }}
-  {{ $imageFallback:= $image.Fill "460x200" }}
-  {{ $imageSM:= $image.Fill "460x200 webp" }}
-  {{ $.Scratch.Set "image" $imageSM.RelPermalink }}
-  {{ else }}
-  {{ $.Scratch.Set "image" $imageFallback.RelPermalink }}
-  {{ end }}
-  {{ end }}
-  {{ end }}
-  {{ $image:= $.Scratch.Get "image" }}
+{{ $date:= time.Format ":date_long" .PublishDate }}
 
-  {{ $date:= .PublishDate.Format "January 2, 2006"}}
-  {{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "image" $image "categories" .Params.categories "contents" .Plain "permalink" .RelPermalink "date" $date ) -}}
+{{ with .Params.image }}
+{{ $.Scratch.Set "image" (partial "images/image.html" (dict "Src" . "Size" "650x")) }}
+{{ end }}
+{{ $image:= $.Scratch.Get "image" }}
 
-{{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{ $.Scratch.Add "index" (dict "title" .Title "date" $date "image" $image "categories" .Params.categories "contents" .Plain "permalink" .RelPermalink) }}
+{{ end }}
+{{ $.Scratch.Get "index" | jsonify }}

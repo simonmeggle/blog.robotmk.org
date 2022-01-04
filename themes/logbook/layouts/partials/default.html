@@ -11,16 +11,14 @@
       {{ if eq $sidebar "left" }}
       <aside class="col-lg-4 order-2 order-lg-1">
         <div class="pr-0 pr-lg-4">
-          {{- partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
+          {{ partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) }}
         </div>
       </aside>
       {{ end }}
       <!-- /left sidebar -->
 
       <!-- post wrapper -->
-      <div
-        class="{{if $hasbar}}col-lg-8{{ else }}{{if eq $layout `grid`}} col-12 {{else}} col-lg-8 mx-auto {{end}}{{end}} {{if eq $sidebar `left`}}order-1 order-lg-2{{end}} mb-5 mb-lg-0">
-
+      <div class="{{if $hasbar}}col-lg-8{{ else }}{{if eq $layout `grid`}} col-12 {{else}} col-lg-8 mx-auto {{end}}{{end}} {{if eq $sidebar `left`}}order-1 order-lg-2{{end}} mb-5 mb-lg-0">
         {{ if eq $layout "list" }}
         <!-- list article -->
         {{ range $paginator.Pages }}
@@ -41,7 +39,7 @@
                 <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 767px)">
                 <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 991px)">
                 <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 1200px)">
-                <source srcset="">
+                <source srcset="{{$imageLG.RelPermalink}}">
                 <img loading="lazy" class="img-fluid w-100" src="{{$imageLG.RelPermalink}}" alt="post-thumb" width="{{$image.Width}}" height="{{$image.Height}}">
               </picture>
               {{ else }}
@@ -80,37 +78,20 @@
         <!-- /list article -->
 
 
-        {{ else if eq $layout "grid"}}
+        {{ else if eq $layout "grid" }}
         <!-- grid article -->
         <div class="row">
           {{ range $paginator.Pages }}
           <div class="{{if $hasbar}}col-md-6{{else}}col-lg-4 col-md-6{{end}}">
             <article class="card mb-4 border-0">
               <!-- post thumb -->
-              {{with .Params.images}}
+              {{ with .Params.images }}
               <div class="post-slider slider-sm">
-                {{ range .}}
-                {{ if (fileExists (add `assets/` .)) }}
-                {{ $image:= resources.Get . }}
-                {{ $imageFallback:= $image.Resize "380x" }}
-                {{ $imageLG:= $image.Resize "380x webp" }}
-                {{ $imageMD:= $image.Resize "360x webp" }}
-                {{ $imageSM:= $image.Resize "540x webp" }}
-                {{ $imageXS:= $image.Resize "400x webp" }}
-                <picture>
-                  <source srcset="{{ $imageXS.RelPermalink }}" media="(max-width: 575px)">
-                  <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 767px)">
-                  <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 991px)">
-                  <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 1200px)">
-                  <source srcset="{{$imageLG.RelPermalink}}">
-                  <img loading="lazy" class="img-fluid w-100" src="{{$imageLG.RelPermalink}}" alt="post-thumb" width="{{$image.Width}}" height="{{$image.Height}}">
-                </picture>
-                {{ else }}
-                <img loading="lazy" class="img-fluid" src="{{ $imageFallback.RelPermalink }}" alt="post-thumb" width="{{$image.Width}}" height="{{$image.Height}}">
-                {{ end }}
+                {{ range . }}
+                {{ partial "images/image.html" (dict "Src" . "Class" "img-fluid w-100")}}
                 {{ end }}
               </div>
-              {{end}}
+              {{ end }}
               <!-- /post thumb -->
               <div class="card-body">
                 <h3 class="h4"><a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
@@ -144,32 +125,15 @@
         <!-- full article -->
         {{ range $paginator.Pages }}
         <article class="row mb-5">
-          {{with .Params.images}}
-          <div class="col-12">
+          {{ with .Params.images }}
+          <div class="col-12 mb-4">
             <div class="post-slider">
               {{ range .}}
-              {{ if (fileExists (add `assets/` .)) }}
-              {{ $image:= resources.Get . }}
-              {{ $imageFallback:= $image.Resize "750x" }}
-              {{ $imageLG:= $image.Resize "750x webp" }}
-              {{ $imageMD:= $image.Resize "710x webp" }}
-              {{ $imageSM:= $image.Resize "540x webp" }}
-              {{ $imageXS:= $image.Resize "400x webp" }}
-              <picture>
-                <source srcset="{{ $imageXS.RelPermalink }}" media="(max-width: 575px)">
-                <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 767px)">
-                <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 991px)">
-                <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 1200px)">
-                <source srcset="{{$imageLG.RelPermalink}}">
-                <img loading="lazy" class="img-fluid w-100" src="{{$imageLG.RelPermalink}}" alt="post-thumb" width="{{$image.Width}}" height="{{$image.Height}}">
-              </picture>
-              {{ else }}
-              <img loading="lazy" class="img-fluid" src="{{ $imageFallback.RelPermalink }}" alt="post-thumb" width="{{$image.Width}}" height="{{$image.Height}}">
-              {{ end }}
+              {{ partial "images/image.html" (dict "Src" . "Class" "img-fluid w-100")}}
               {{ end }}
             </div>
           </div>
-          {{end}}
+          {{ end }}
 
           <div class="{{if or (eq $sidebar `left`) (eq $sidebar `right`)}}col-12{{ else }}col-lg-10{{end}} mx-auto">
             <h3><a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
@@ -201,14 +165,11 @@
         {{ $lower_limit := (add $adjacent_links 1) }}
         {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
         {{ if gt $paginator.TotalPages 1 }}
-        <ul
-          class="pagination {{if or (eq $sidebar `left`) (eq $sidebar `right`)}}{{ else }}justify-content-center{{end}}">
+        <ul class="pagination {{if or (eq $sidebar `left`) (eq $sidebar `right`)}}{{ else }}justify-content-center{{end}}">
           <!-- Previous page. -->
           {{ if $paginator.HasPrev }}
           <li class="page-item">
-            <a href="{{ $paginator.Prev.URL }}" class="page-link">
-              &laquo;
-            </a>
+            <a href="{{ $paginator.Prev.URL }}" class="page-link">&laquo;</a>
           </li>
           {{ end }}
           <!-- Page numbers. -->
@@ -260,7 +221,6 @@
         </ul>
         {{ end }}
         <!-- /pagination -->
-
       </div>
       <!-- /post wrapper -->
 

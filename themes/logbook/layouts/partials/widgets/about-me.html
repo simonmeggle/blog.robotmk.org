@@ -18,7 +18,7 @@
     <img class="img-fluid widget-about-image" loading="lazy" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=150&pg&d=identicon" alt="{{site.Params.author}}">
     {{ end }}
 
-    <div class="mt-2 mb-2">
+    <div class="mb-2">
       <span class="d-block">{{ .Plain | markdownify | truncate 80 }}</span>
       
       <ul class="list-inline social-icons mb-1 mt-2">

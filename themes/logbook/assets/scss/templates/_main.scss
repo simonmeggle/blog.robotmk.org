@@ -9,24 +9,26 @@
       transform: translateX(-50%);
 
       @include tablet {
-        bottom: -15px;
+        bottom: -0.9rem;
       }
     }
+
     .slick-arrow {
       @include tablet {
         top: 25%;
       }
+
       @include mobile {
         display: none !important;
       }
     }
 
     .prevArrow {
-      left: 20px;
+      left: 1.25rem;
     }
 
     .nextArrow {
-      right: 20px;
+      right: 1.25rem;
     }
   }
 
@@ -90,13 +92,13 @@
   color: $text-color-dark;
 
   &:hover {
-    color: $primary-color;
+    color: $color-primary;
   }
 }
 
 .post-meta {
   li {
-    margin-right: 10px;
+    margin-right: 0.62rem;
     font-size: 90%;
   }
 
@@ -105,22 +107,22 @@
     border-bottom: 1px dotted $border-color;
 
     &:hover {
-      color: $primary-color;
+      color: $color-primary;
     }
   }
 }
 
 .recent-thumb-alt {
   font-size: 0;
-  height: 60px;
-  width: 60px;
+  height: 3.75rem;
+  width: 3.75rem;
   border-radius: 50%;
-  background-color: $primary-color;
+  background-color: $color-primary;
   text-align: center;
 
   &::first-letter {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 2.5rem;
+    line-height: 3.75rem;
     color: $white;
   }
 }
@@ -132,10 +134,10 @@
     display: block;
     color: $text-color-light;
     padding: 5px;
-    font-size: 14px;
+    font-size: 0.875rem;
 
     &:hover {
-      color: $primary-color;
+      color: $color-primary;
     }
   }
 }
@@ -146,16 +148,16 @@
   a {
     display: block;
     color: $text-color-light;
-    font-size: 14px;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
+    font-size: 0.875rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
     border-radius: 50%;
     border: 1px solid $border-color;
 
     &:hover {
-      color: $primary-color;
-      border-color: $primary-color;
+      color: $color-primary;
+      border-color: $color-primary;
     }
   }
 }
@@ -170,43 +172,43 @@
 
   &:hover {
     .prevArrow {
-      left: 10px;
+      left: 0.62rem;
     }
 
     .nextArrow {
-      right: 10px;
+      right: 0.62rem;
     }
   }
 }
 
 .slider-sm {
   .slick-arrow {
-    height: 35px;
-    width: 35px;
-    line-height: 35px;
+    height: 2.1rem;
+    width: 2.1rem;
+    line-height: 2.1rem;
   }
 }
 
 // pagination
 .pagination {
-  margin-top: 50px;
+  margin-top: 3.125rem;
 
   .page-item {
     .page-link {
       display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
       border-radius: 50%;
       background: $light;
       text-align: center;
       padding: 0;
-      margin-right: 10px;
+      margin-right: 0.62rem;
       border: 0;
       color: $text-color;
 
       &:hover {
-        background: $primary-color;
+        background: $color-primary;
         color: $white;
       }
 
@@ -224,215 +226,10 @@
 
     &.active {
       .page-link {
-        background: $primary-color;
+        background: $color-primary;
         color: $white;
       }
     }
-  }
-}
-
-// content style
-.content {
-
-  * {
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 500;
-  }
-
-  strong {
-    font-weight: 600;
-  }
-
-  a {
-    color: $text-color;
-    border-bottom: 1px dotted $border-color;
-
-    &:hover {
-      color: $primary-color;
-    }
-  }
-
-  ol,
-  ul {
-    padding-left: 20px;
-
-    li {
-      margin-bottom: 10px;
-    }
-  }
-
-  ul {
-    padding-left: 0;
-    margin-bottom: 20px;
-    list-style-type: none;
-
-    li {
-      padding-left: 20px;
-      position: relative;
-
-      &::before {
-        position: absolute;
-        content: '';
-        height: 8px;
-        width: 8px;
-        border-radius: 50%;
-        background: $primary-color;
-        left: 3px;
-        top: 8px;
-      }
-    }
-
-  }
-
-  table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    border: 1px solid $border-color;
-  }
-
-  table td,
-  table th {
-    padding: .75rem;
-    vertical-align: top;
-    margin-bottom: 0;
-  }
-
-  tr:not(:last-child) {
-    border-bottom: 1px solid $border-color;
-  }
-
-  th {
-    font-weight: 500;
-  }
-
-  thead {
-    background: $light;
-    margin-bottom: 0;
-
-    tr {
-      border-bottom: 1px solid $border-color;
-    }
-  }
-
-  tbody {
-    background: lighten($color: $light, $amount: 5);
-    margin-bottom: 0;
-  }
-
-  .notices {
-    margin: 2rem 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .notices p {
-    padding: 10px;
-    margin-bottom: 0;
-  }
-  
-  .notices p::before {
-    position: absolute;
-    top: 2px;
-    color: $white;
-    font-family: $icon-font;
-    font-weight: 900;
-    content: "\f05a";
-    left: 10px;
-  }
-
-  .notices.note p {
-    border-top: 30px solid #6ab0de;
-    background: $light;
-  }
-
-  .notices.note p::after {
-    content: 'Note';
-    position: absolute;
-    top: 2px;
-    color: $white;
-    left: 2rem;
-  }
-
-
-  .notices.tip p {
-    border-top: 30px solid #78C578;
-    background: $light;
-  }
-
-  .notices.tip p::after {
-    content: 'Tip';
-    position: absolute;
-    top: 2px;
-    color: $white;
-    left: 2rem;
-  }
-
-  .notices.info p {
-    border-top: 30px solid #F0B37E;
-    background: $light;
-  }
-
-  .notices.info p::after {
-    content: 'Info';
-    position: absolute;
-    top: 2px;
-    color: $white;
-    left: 2rem;
-  }
-
-
-  .notices.warning p {
-    border-top: 30px solid #E06F6C;
-    background: $light;
-  }
-
-  .notices.warning p::after {
-    content: 'Warning';
-    position: absolute;
-    top: 2px;
-    color: #fff;
-    left: 2rem;
-  }
-
-
-  blockquote {
-    font-size: 20px !important;
-    color: $text-color;
-    padding: 20px 40px;
-    border-left: 2px solid $primary-color;
-    margin: 40px 0;
-    font-weight: bold;
-    background: $light;
-
-    p {
-      margin-bottom: 0 !important;
-    }
-  }
-
-  pre {
-    display: block;
-    padding: 9.5px;
-    margin: 10px 0px 10px;
-    white-space: pre-wrap;
-  }
-
-  code {
-    margin-bottom: 0 !important;
-    font-size: 100%;
   }
 }
 
@@ -440,7 +237,7 @@
 .code-tabs {
   border: 1px solid $border-color;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 
   .nav-tabs {
     margin-bottom: 0;
@@ -460,7 +257,7 @@
       }
 
       &.active {
-        background: $primary-color;
+        background: $color-primary;
 
         .nav-link {
           color: $white;
@@ -470,13 +267,13 @@
   }
 
   .tab-content {
-    padding: 20px 15px;
+    padding: 1.25rem 0.9rem;
   }
 }
 
 .title-bordered {
   border: 1px solid $border-color;
-  border-radius: 40px;
+  border-radius: 2.5rem;
   padding: 2px;
 
   h1,
@@ -505,33 +302,33 @@
     &:focus {
       outline: 0;
       box-shadow: none;
-      border-color: $primary-color;
+      border-color: $color-primary;
     }
   }
 
   textarea.form-control {
-    height: 120px;
+    height: 11.25rem;
   }
 }
 
 // sidebar
 .widget {
   background: $white;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 
   &-about {
     .widget-about-image {
       height: 130px;
-      width: 100px;
+      width: 6.25rem;
       object-fit: cover;
-      border-radius: 10px;
-      margin-right: 15px;
+      border-radius: 0.62rem;
+      margin-right: 0.9rem;
     }
   }
 
   &-title {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 0.9rem;
 
     span {
       background: $white;
@@ -558,7 +355,7 @@
       border: 0;
       border-bottom: 1px dotted $border-color;
       width: 100%;
-      height: 40px;
+      height: 2.5rem;
 
       &:focus {
         outline: 0;
@@ -599,7 +396,7 @@
         color: $text-color-dark;
 
         &:hover {
-          color: $primary-color;
+          color: $color-primary;
         }
       }
     }
@@ -607,18 +404,18 @@
 
   &-list-inline {
     li {
-      margin-bottom: 10px;
+      margin-bottom: 0.62rem;
 
       a {
-        padding: 2px 10px;
+        padding: 2px 0.62rem;
         border: 1px solid $border-color;
-        border-radius: 40px;
+        border-radius: 2.5rem;
         display: block;
         color: $text-color;
 
         &:hover {
-          border-color: $primary-color;
-          background: $primary-color;
+          border-color: $color-primary;
+          background: $color-primary;
           color: $white;
         }
       }
@@ -626,11 +423,11 @@
   }
 
   &-post {
-    padding: 15px 0 !important;
+    padding: 0.9rem 0 !important;
 
     img {
-      height: 60px;
-      width: 60px;
+      height: 3.75rem;
+      width: 3.75rem;
       border-radius: 50%;
       object-fit: cover;
     }
@@ -642,12 +439,13 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 30px;
+
   .promotion-content {
     position: absolute;
     padding: 30px;
     height: 100%;
     width: 100%;
-    background-color: rgba(24,24,24,.7);
+    background-color: rgba(24, 24, 24, .7);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -656,6 +454,7 @@
     left: 0;
     top: 0;
   }
+
   .promotion-content h5 {
     font-size: 32px;
   }
@@ -668,7 +467,7 @@
     padding: 5px 0;
 
     &:hover {
-      color: $primary-color;
+      color: $color-primary;
     }
   }
 }
@@ -677,28 +476,28 @@
   .form-control {
     background-color: $light;
     border: 0;
-    margin-bottom: 10px;
-    padding-left: 40px;
+    margin-bottom: 0.62rem;
+    padding-left: 2.5rem;
   }
 
   .email-icon {
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 0.62rem;
+    top: 0.62rem;
     font-size: 18px;
-    color: $primary-color;
+    color: $color-primary;
   }
 }
 
 .quote {
   background-color: $light;
   display: flex;
-  padding: 20px;
+  padding: 1.25rem;
 
   svg {
     font-size: 24px;
-    color: $primary-color;
-    margin-right: 20px;
+    color: $color-primary;
+    margin-right: 1.25rem;
   }
 
   p {
@@ -706,27 +505,27 @@
   }
 
   &-by {
-    color: $primary-color;
+    color: $color-primary;
   }
 }
 
 .scroll-top {
   border-top: 1px solid $border-color;
   position: relative;
-  margin: 20px 0 40px;
+  margin: 1.25rem 0 2.5rem;
 
   a {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 50px;
-    width: 50px;
+    height: 3.125rem;
+    width: 3.125rem;
     border-radius: 50%;
-    background-color: $primary-color;
+    background-color: $color-primary;
     color: $white;
     text-align: center;
-    line-height: 50px;
+    line-height: 3.125rem;
     display: block;
   }
 }
@@ -735,18 +534,18 @@
 .single-product-slider {
 
   .slick-dots {
-    margin-top: 10px;
+    margin-top: 0.62rem;
     padding-left: 0;
     display: flex;
 
     li {
       list-style-type: none;
-      margin: 10px;
+      margin: 0.62rem;
       cursor: pointer;
 
       img {
         width: 100%;
-        max-height: 100px;
+        max-height: 6.25rem;
         object-fit: cover;
       }
 
