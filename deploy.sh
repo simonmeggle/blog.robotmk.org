@@ -9,6 +9,8 @@ build_command() {
   hugo
 }
 
+git worktree prune
+
 echo -e "\033[0;32mDeleting old content from $directory/ ...\033[0m"
 rm -rf $directory
 
@@ -21,10 +23,11 @@ build_command
 echo -n "blog.robotmk.org" > $directory/CNAME
 
 echo -e "\033[0;32mDeploying $branch branch...\033[0m"
+
 cd $directory &&
   git add --all &&
   git commit -m "Deploy updates" &&
   git push -f origin $branch
 
 echo -e "\033[0;32mCleaning up...\033[0m"
-git worktree remove $directory
+#git worktree remove $directory
