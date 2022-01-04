@@ -15,7 +15,7 @@ git worktree prune
 # rm -rf $directory
 
 echo -e "\033[0;32mChecking out $branch....\033[0m"
-git worktree add $directory $branch
+git worktree add -B $directory $branch
 
 echo -e "\033[0;32mGenerating site...\033[0m"
 build_command
