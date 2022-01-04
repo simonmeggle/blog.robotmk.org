@@ -32,7 +32,7 @@ Damit die Library weiß, wohin sie den Mauszeiger führen soll (z.B. um einen Kl
 
 Nehmen wir als Beispiel dieses Dialogfeld: 
 
-{{< image src="images/post/ihl-skimage-pr-notepad-save.png" >}}
+{{< image src="ihl-skimage-pr-notepad-save.png" position="center" caption="An example dialogue" alt="example dialogue" position="center"  title="Image Title" >}} 
 
 Um den Button "Nicht speichern" anklicken zu können, wird ein Referenzbild erstellt und unter dem Namen `nicht_speichern.png` im Testordner abgelegt:
 
@@ -241,7 +241,7 @@ Nach einem Neustart der Robot-Suite wird der Test nun an exakt der problematisch
 
 Von hier aus wählt man das *Needle*-Bild aus dem [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
 
-{{< image alt="XXXX" src="images/post/ihl-skimage-pr-debug-selectimage.png" >}}
+{{< image src="ihl-skimage-pr-debug-selectimage.png" position="center" alt="example dialogue" position="center"  title="Image Title" >}} 
 
 Darunter teilt sich die Ansicht in zwei Bereiche: 
 
