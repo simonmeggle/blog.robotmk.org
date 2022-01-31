@@ -1,5 +1,5 @@
 ---
-title: "Sharper edges for the ImageHorizonLibrary"
+title: "Edge detection for the ImageHorizonLibrary"
 date: 2021-11-14T12:23:07+01:00
 images:
   - "images/post/ihl-skimage-pr-knives.jpg"
