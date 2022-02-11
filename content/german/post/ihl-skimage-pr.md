@@ -9,7 +9,7 @@ summary: "Welche Problem beim Einsatz der Bilderkennung mit der ImageHorizonLibr
 categories: ["news"]
 tags: ["library","robotframework", "ui"]
 type: "regular" # available type (regular or featured)
-draft: true
+draft: false
 ---
 
 (Hinweis: statt [ImageHorizonLibrary](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html) verwende ich die Abkürzung **IHL**.) 

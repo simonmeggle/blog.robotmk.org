@@ -9,7 +9,7 @@ summary: "Which problems can arise of image recognition within ImageHorizonLibra
 categories: ["news"]
 tags: ["library","robotframework", "ui"]
 type: "regular" # available type (regular or featured)
-draft: true
+draft: false
 ---
 
 (Note: instead of [ImageHorizonLibrary](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html) I am using the acronym **IHL**.)
