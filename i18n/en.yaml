@@ -60,3 +60,6 @@
 
 - id: search_results_for
   translation: Search results for
+
+- id: comments
+  translation: Comments
