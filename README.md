@@ -11,7 +11,9 @@ Links:
 
 ## Deployment 
 
-Das Github-Repo (git@github.com:simonmeggle/blog.robotmk.org.git, PUBLIC) wird automatisch in ein Google Source Repo gespiegelt. 
+git add / git commit / git push 
+
+Github-Repo (git@github.com:simonmeggle/blog.robotmk.org.git, PUBLIC) gets mirrored to Google Source. 
 
 
 Cloud Build Trigger fires when commits are pushed to the `main` branch and executes the pipeline defined in `cloudbuild.yml`.
