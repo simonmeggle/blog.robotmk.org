@@ -274,7 +274,7 @@ Die Debugger-Gui bietet die entsprechende Zeile zum Umstellen der Strategie als 
 
 Unsere Erweiterung der **ImageHorizonLibrary** durch **Kantenerkennung** ermöglicht das Testen von Applikationen auch dann, wenn das *Haystack*-Bild durch **Bildkompression**, **Schriftglättung** o.ä. "optimiert" bzw. "verfälscht" wurde (das liegt im Auge des Betrachters...), oder gar durch **dynamisch nachgeladene Inhalte** nicht 100% vorhersehbar ist (wie am Bespiel der Autobahn-Operator-Software zu sehen). 
 
-Wir (Gautam und ich) sind sehr stolz auf diese Weiterentwicklung, die wir Eficode nun in Kürze in Form eines **Pullrequests auf Github** vorlegen werden.   
+Gautam und ich sind sehr stolz auf diese Weiterentwicklung, die wir Eficode nun in Form eines [Pullrequests auf Github](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57) vorgelegt haben.
 
 
 ## Danke an ABRAXAS Informatik AG

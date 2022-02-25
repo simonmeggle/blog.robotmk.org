@@ -272,7 +272,7 @@ If a proper setting was found, the appropriate keyword including its arguments i
 
 Our extension to the **ImageHorizonLibrary** makes application tests possible even if the *haystack* image was "optimized" or "falsified" (this is in the eye of the beholder...) due to **image compression, font smoothing** etc., or even if content from **external sources** cannot be taken as predictable (as shown in the example of the highway operator application).
 
-We (Gautam and me) are very proud about this further development which we will soon present Eficode in the form of a **pull request on Github**. 
+We (Gautam and me) are very proud about this further development which we have presented to Eficode as a [pull request on Github](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57).
 
 
 ## Thanks to ABRAXAS Informatik AG
