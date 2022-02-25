@@ -1,6 +1,6 @@
 ---
 title: "Edge detection for the ImageHorizonLibrary"
-date: 2021-11-14T12:23:07+01:00
+date: 2022-02-24T12:23:07+01:00
 images:
   - "images/post/ihl-skimage-pr-knives.jpg"
 author: "Simon Meggle"
@@ -8,7 +8,7 @@ description: "Get more robust tests by the use of Canny edge detection in the Im
 summary: "Which problems can arise of image recognition within ImageHorizonLibrary - and how we solved it."
 categories: ["news"]
 tags: ["library","robotframework", "ui"]
-type: "regular" # available type (regular or featured)
+type: "featured" # available type (regular or featured)
 draft: false
 ---
 
@@ -21,7 +21,7 @@ draft: false
 * Libraries like **IHL** allow smaller pixel deviations by accepting an additional tolerance parameter (`confidence`, `tolerance`, `similarity`...).
 * **Obviously identical images with massive pixels of minimum deviations are still a problem, though.**
 * "Canny edge detection" is a proven method to extract only the lines from images which describe areas with high contrast. 
-* [Gautam Ilango](https://github.com/gautamilango) and me are filing a pull request to the **IHL** which adds this method as an additional strategy. 
+* [Gautam Ilango](https://github.com/gautamilango) and me have filed a [pull request](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57) to the **IHL** which adds this method as an additional strategy. 
 
 
 ## Basics: This is how the image recognition works
@@ -203,25 +203,23 @@ The effect of the `sigma` parameter in step 1 on the detected edges is shown on 
 
    {{< image src="images/post/ihl-skimage-pr-gaussian.gif" >}}
 
-### The strategy "skimage"
+### The strategy "edge"
 
 Our extended version of the **IHL** is fully compatible to the existing version. Using the "[Strategy](https://refactoring.guru/design-patterns/strategy)" design pattern I was able to make the adaption as less invasive as possible. 
 
-If you import the **IHL** library as usual, nothing changes: 
+This means that if you import the **IHL** library as usual, it uses till the `pyautogui` module for image recognition: 
 
     Library  ImageHorizonLibrary  reference_folder=...
 
-{{< notice "note" >}}
-ImageHorizonLibrary still uses by default the image recognition machanism of the PyautoGUI library. 
-{{< /notice >}}
+Now let's say that a *needle* image cannot be found in the *haystack* because of too much deviating pixels. In that case (and only then!) you have a reason to switch the strategy with the keyword `Set Strategy`:
 
-Now let's say that a *needle* image cannot be found in the *haystack* because of too much deviating pixels. In that case (and only then!) you have a reason to switch the strategy to edge detection. This is done by the keyword `Set Strategy`:
+    Set Strategy  edge
 
-    Set Strategy  skimage
+From that moment on, all existing keywords of the **IHL** are using edge detection for image recognition. Both reference and screenshot image are reduced to their very relevant content (= the edges) bofore they are compared against.
 
-From that moment on, all existing keywords of the **IHL** are using edge detection for image recognition. 
+In certain situations it possible that even after the edge detection the reference image can't be found on the screenshot (e.g. when artifacts of RDP/Citrix compression resulted in a little different edge line).
 
-As in PyautoGUI, `confidence` is also allowed here. But we doubt that this is necessary because the images are still cleaned. There should not be any pixel deviations at this time anymore.
+But pixel deviations like this occur only *along* the edge line, thus they are *relevant* imageinformation. In this case, a smaller confidence level of `0.9` for example is sufficient to get a robust image detection even in this case. 
 
 ### The image debugger 
 
@@ -238,31 +236,34 @@ After the suite restart, the test will pause at the problematic position and ope
 
 The debugger allows to select the *needle* image from the [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
 
+{{< image src="ihl-skimage-load-img.png" >}} 
 
-{{< image src="ihl-skimage-pr-debug-selectimage.png" position="center" alt="example dialogue" position="center"  title="Image Title" >}} 
+Below of that there are two sections for both strategies with a button `Detect reference image` and a handful of sliders for different parameters:  
 
-Below of that the window has two panels: 
+{{< image src="ihl-skimage-sections.png" >}}  
 
-* left panel: `Strategy PyAutoGUI`
-* right panel: `Strategy skimage`
+When you click this button the debugger will try to detect the reference image with the according strategy on the current desktop. It will do it exactly like during a keyword execution like `Wait For`.
 
-Each of the panels has a button `Detect reference image`. This button triggers the image recognition with the respective strategy, either `pyautogui` or `skimage`. 
+The viewer in the lower area of the window shows the needle image and, left of that, a thumbnail image of the current ***haystack* image with all matching regions**:
 
-{{< image src="images/post/ihl-skimage-pr-simage-with-args.png" >}}
+{{< image src="ihl-skimage-imageviewer.png" >}}  
 
-The viewer in the lower area of the window shows the needle image and, left of that, a thumbnail image of the current ***haystack* image with all matching regions** (here: one single match = windows menu button):
+The debugger UI gives you answers to two important questions: 
 
-{{< image src="images/post/ihl-skimage-pr-results.png" >}}
+- **How many matches?** - Up to now, you were in the dark here. In case of multiple (equal) matches the library always takes the first one - without any warning. There is no guarantee that this order won't change.  
+"**Matches found**" helps to decide whether it is better to search first for an unique "fixed point" and to navigate from there with relative keywords like `Click To The Right Of`. 
+- **How is the detection quality?** - Up to now it was difficult to find a proper value for `confidence`.
+"**Max. Peak Value**" indicates the percentage of matching pixels in the *best* matching region. This eases fine-tuning of `confidence` a lot. 
+
+As soon as you are satisfied with the settings, you can copy/paste the keyword `Set Strategy` into the Robot test file. 
+
+--- 
 
 After the click on "**Edge detection debugger**" things get really interesting: it opens another window which shows *needle* and *haystack* images **before and after the edge detection**. The viewer also allows to zoom into the images in order to inspect the regions: 
 
-{{< image src="images/post/ihl-skimage-pr-figure.png" >}}
+{{< image src="ihl-skimage-detaildebugger.png"  >}}
 
 Thanks to this visual feedback, `confidence` (and in case of skimage also `sigma`, `low_threshold` and `high_threshold`) can now be adjusted in a way that preferably only one single match can be achieved. 
-
-If a proper setting was found, the appropriate keyword including its arguments is ready to be copied and pasted right into the Robot Framework test code: 
-
-{{< image src="images/post/ihl-skimage-pr-command.png" >}}
 
 {{< notice "info" >}}
   "Matches" are only counted if the found area contains more similar pixels than set by `confidence`. Even if you see more than one match while debugging, the strategy always returns only the coordinates of the *best match* during test execution.
@@ -272,8 +273,33 @@ If a proper setting was found, the appropriate keyword including its arguments i
 
 Our extension to the **ImageHorizonLibrary** makes application tests possible even if the *haystack* image was "optimized" or "falsified" (this is in the eye of the beholder...) due to **image compression, font smoothing** etc., or even if content from **external sources** cannot be taken as predictable (as shown in the example of the highway operator application).
 
+Apropos, this is how the swiss national map looks like after edge detection (the yellow dashed line shows the dimensions of the reference image): 
+
+{{< image src="ihl-skimage-chmap.png"  >}}
+
 We (Gautam and me) are very proud about this further development which we have presented to Eficode as a [pull request on Github](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57).
 
+## Updates
+
+Until the pull request gets accepted, you can try out the current state of the edge detection strategy as follows: 
+
+```bash
+# --- create a new virtual environment 
+virtualenv .venv
+# on Linux
+. .venv/bin/activate
+# on Windows 
+.venv/Scripts/activate
+# --- install RF
+pip install robotframework
+# --- clone the repository, switch branch
+git clone git@github.com:simonmeggle/robotframework-imagehorizonlibrary.git
+cd robotframework-imagehorizonlibrary
+git fetch -a 
+git checkout skimage
+# --- install the current development state as "editable" module
+pip install -e . 
+```
 
 ## Thanks to ABRAXAS Informatik AG
 

@@ -1,6 +1,6 @@
 ---
 title: "Kantenerkennung für die ImageHorizonLibrary"
-date: 2021-11-14T12:23:07+01:00
+date: 2022-02-24T12:23:07+01:00
 images:
   - "images/post/ihl-skimage-pr-knives.jpg"
 author: "Simon Meggle"
@@ -8,7 +8,7 @@ description: "Robustere Tests durch Einsatz der Canny Kantenerkennung in der Ima
 summary: "Welche Problem beim Einsatz der Bilderkennung mit der ImageHorizonLibrary entstehen können - und wie wir sie gelöst haben."
 categories: ["news"]
 tags: ["library","robotframework", "ui"]
-type: "regular" # available type (regular or featured)
+type: "featured" # available type (regular or featured)
 draft: false
 ---
 
@@ -21,7 +21,7 @@ draft: false
 * Libraries wie **IHL** erlauben kleinere Pixel-Abweichungen, indem sie einen prozentualen Toleranzwert entgegennehmen (`confidence`, `tolerance`, `similarity`...).
 * **Problematisch bleiben die Unterschiede augenscheinlich identischer Bilder, bei denen eine große Masse der Pixel um minimale Details abweicht.**
 * Kantenerkennung ("Canny edge detection") ist ein probates Mittel, um aus Bildern nur noch die Linien zu extrahieren, welche hohe Kontrastübergänge beschreiben. 
-* Ein Pull Request von [Gautam Ilango](https://github.com/gautamilango) und mir ergänzt die ImageHorizonLibrary um diese Methode als zusätzliche Strategie.  
+* Ein [Pull Request](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57) von [Gautam Ilango](https://github.com/gautamilango) und mir ergänzt die ImageHorizonLibrary um diese Methode als zusätzliche Strategie.  
 
 
 ## Basics: So funktioniert die Bilderkennung
@@ -80,8 +80,6 @@ Library  ImageHorizonLibrary  confidence=0.95
 # Alternativ: Ändern von Confidence während des Tests
 Set Confidence  0.95
 ```
-
-
 
 {{< notice "note" >}}
   `confidence` ist ein Feature, welches die Installation des Python-Moduls `python-opencv` erfordert.
@@ -206,25 +204,23 @@ Wie sich der `sigma`-Parameter von Schritt 1 auf die final erkannten Kanten ausw
 
    {{< image alt="XXXX" src="images/post/ihl-skimage-pr-gaussian.gif" >}} 
 
-### Die Skimage-Strategie
+### Die Strategie "edge"
 
 Die von uns erweiterte **IHL** ist voll kompatibel zur bestehenden Version. Ich habe unter Anwendung des [Strategy](https://refactoring.guru/design-patterns/strategy)-Design-Patterns dafür gesorgt, dass der Eingriff in den Code so minimal wie möglich erfolgt. 
 
-Wird die **IHL** also geladen wie gehabt, so ändert sich nichts: 
+Das bedeutet, dass sich in der Handhabung der Library nichts ändert. Ohne weitere Parametrisierung arbeitet sie nach wie vor mit der Bilderkennung per `pyautogui`:
 
     Library  ImageHorizonLibrary  reference_folder=...
 
-{{< notice "note" >}}
-Die ImageHorizonLibrary verwendet im Default nach wie vor den Bilderkennungsmechanismus der PyautoGUI-Bibliothek. 
-{{< /notice >}}
+Nun angenommen, ein *Needle*-Bild wird wegen zu starker Abweichungen nicht zuverlässig im *Haystack* gefunden. Dann (und wirklich nur dann!) gibt es einen guten Grund, zur Bilderkennung die Kantenerkennung hinzuzuziehen. Das Keyword `Set Strategy` erlaubt es, die Strategie während des Tests zu setzen: 
 
-Nun angenommen, ein *Needle*-Bild wird wegen zu starker Abweichungen nicht zuverlässig im *Haystack* gefunden. Dann (und wirklich nur dann!) gibt es einen Grund, zur Bilderkennung die Kantenerkennung hinzuzuziehen. Das Keyword `Set Strategy` erlaubt es, die Strategie während des Tests umzustellen:
+    Set Strategy  edge
 
-    Set Strategy  skimage
+Alle bestehenden Keywords der **IHL** arbeiten ab diesem Moment mit der Bilderkennung auf Basis der edge detection. Referenz- und Screenshot-Bild werden vor dem Bildvergleich also erst per Kantenerkennung auf das Wesentliche reduziert. 
 
-Alle bestehenden Keywords der **IHL** arbeiten ab diesem Moment mit der Bilderkennung auf Basis der edge detection. 
+In bestimmten Situationen kann es vorkommen, dass das Referenzbild selbst nach der Kantenerkennung nicht zuverlässig auf dem Screenshot gefunden werden kann (z.B. weil Artefakte bei der Bildkompression durch RDP/Citrix einen minimal anderen Kantenverlauf ergeben haben). 
 
-Auch die skimage-Strategie erlaubt den Einsatz der `confidence`, um beim Vergleich der Bilder aus der Kantenerkennung *zusätzlich* noch einen prozentualen Toleranzwert zu erlauben. Ob das allerdings noch notwendig ist, bezweifeln wir, denn die Bilder sind ja bereits bereinigt. 
+Solche Pixelabweichungen bewegen sich im vom Grundrauschen bereinigten Bild aber immer im Bereich der Kanten, zählen also zur relevanten Bildinformation. Es reicht somit, `confidence` ggf. leicht herabzusetzen (z.b. auf `0.9`), um eine verlässliche Bilderkennung zu erreichen. 
 
 ### Der Image Debugger 
 
@@ -241,30 +237,34 @@ Nach einem Neustart der Robot-Suite wird der Test nun an exakt der problematisch
 
 Von hier aus wählt man das *Needle*-Bild aus dem [reference_folder](https://eficode.github.io/robotframework-imagehorizonlibrary/doc/ImageHorizonLibrary.html): 
 
-{{< image src="ihl-skimage-pr-debug-selectimage.png" position="center" alt="example dialogue" position="center"  title="Image Title" >}} 
+{{< image src="ihl-skimage-load-img.png" >}} 
 
-Darunter teilt sich die Ansicht in zwei Bereiche: 
+Darunter teilt sich die Ansicht in zwei Bereiche für die beiden Erkenungsstrategien "Default" und "Edge" mit verschiedenen Slidern zur jeweiligen Parametrisierungund je einem Button `Detect reference image`:
 
-* links: `Strategy PyAutoGUI`
-* rechts: `Strategy skimage`
+{{< image src="ihl-skimage-sections.png" >}}  
 
-mit je einem Button `Detect reference image`. Klickt man diesen, so testet der Debugger die Bilderkennung mit `pyautogui` bzw. `skimage`. 
+Klickt man diesen, so versucht der Debugger, das Referenzbild mit der entsprechenden Strategie auf dem Desktop zu finden - auf exakt die Weise wie bei Ausführung eines Robot-Keywords (z.B. `Wait For`).
 
-{{< image alt="XXXX" src="images/post/ihl-skimage-pr-simage-with-args.png" >}}
+Der Viewer im unteren Bereich zeigt daraufhin das Needle-image und links davon, **rot markiert, alle auf dem Desktop gefundenen Treffer**.
 
-Der Viewer im unteren Bereich zeigt das Needle-image und links davon, **rot markiert, alle auf dem Desktop gefundenen Treffer** (hier: ein Treffer = Windows-Startmenü-Button). 
+{{< image src="ihl-skimage-imageviewer.png" >}}  
 
-{{< image alt="XXXX" src="images/post/ihl-skimage-pr-results.png" >}}
+Der Image Debugger liefert hier zwei wichtige Informationen: 
+
+- **Wie viele Treffer wurden insgesamt gefunden?** - Bisher tappte man hier mehr oder weniger um Dunklen. Bei mehreren (gleichen) Treffern greift die Library nämlich zum ersten im Array aller erkannten Regions - ohne weitere Warnung. 
+Anhand "**Matches found**" kann man entscheiden, ob man sich besser ein eindeutiges Referenzbild als "Fixpunkt" suchen und von dort aus mit relativen Keywords zum gewünschten Punkt gehen sollte (z.b. mit `Click To The Right Of`). 
+- **Wie ist die Erkennungsqualität?** - Bisher war die Einstellung der `confidence` nur aufwändig per "try & error" (Bild matcht/matcht nicht) möglich. 
+Der "**Max. Peak Value**" zeigt an, zu wie viel Prozent das Referenzbild im *besten* Match übereinstimmt. Das erleichtert die Feinjustierung der `confidence` erheblich. 
+  
+Ist die optimale Einstellung gefunden, kann das Keyword `Set Strategy` zur Parametrisierung der Strategie per copy/paste in das Robot-File übertragen werden.  
+
+---
 
 So richtig interessant wird die Sache, wenn man nach Ausführung der Kantenerkennung den Button "**Edge detection debugger**" klickt: er öffnet ein weiteres Fenster, in dem man *Needle*- und *Haystack*-Bild **vor und nach der Kantenerkennung** sehen kann. Die erkannten Bereiche können mit der Lupe herangezoomt und bewertet werden: 
 
-{{< image alt="XXXX" src="images/post/ihl-skimage-pr-figure.png" >}}
+{{< image src="ihl-skimage-detaildebugger.png"  >}}
 
 `confidence` (und im Fall von skimage auch `sigma`, `low_threshold` und `high_threshold`) können dank visueller Kontrolle über den Debugger nun so justiert werden, dass möglichst nur ein Treffer erzielt wird. 
-
-Die Debugger-Gui bietet die entsprechende Zeile zum Umstellen der Strategie als fertige Zeile für copy/paste an: 
-
-{{< image alt="XXXX" src="images/post/ihl-skimage-pr-command.png" >}}
 
 {{< notice "info" >}}
   Als "Treffer" zählen nur die Regionen mit einer Pixel-Übereinstimmung höher als die `confidence`. Auch wenn während des Debuggens mehrere Treffer sichtbar sind, so wird während der Ausführung immer die Koordinate der Region zurückgegeben, welche die *höchste Übereinstimmung* aufweist.  
@@ -272,9 +272,35 @@ Die Debugger-Gui bietet die entsprechende Zeile zum Umstellen der Strategie als 
 
 ## Zusammenfassung
 
-Unsere Erweiterung der **ImageHorizonLibrary** durch **Kantenerkennung** ermöglicht das Testen von Applikationen auch dann, wenn das *Haystack*-Bild durch **Bildkompression**, **Schriftglättung** o.ä. "optimiert" bzw. "verfälscht" wurde (das liegt im Auge des Betrachters...), oder gar durch **dynamisch nachgeladene Inhalte** nicht 100% vorhersehbar ist (wie am Bespiel der Autobahn-Operator-Software zu sehen). 
+Unsere Erweiterung der **ImageHorizonLibrary** durch **Kantenerkennung** ermöglicht das Testen von Applikationen auch dann, wenn das *Haystack*-Bild durch **Bildkompression**, **Schriftglättung** o.ä. "optimiert" bzw. "verfälscht" wurde (das liegt im Auge des Betrachters...), oder gar durch **dynamisch nachgeladene Inhalte** nicht 100% vorhersehbar ist - wie am Bespiel der Autobahn-Operator-Software zu sehen. 
+
+Apropos, so sieht übrigens die Karte der Schweiz nach der Kantenerkennung aus (die gelbe Linie zeigt die Abmessungen des Referenzbildes):
+
+{{< image src="ihl-skimage-chmap.png"  >}}
 
 Gautam und ich sind sehr stolz auf diese Weiterentwicklung, die wir Eficode nun in Form eines [Pullrequests auf Github](https://github.com/eficode/robotframework-imagehorizonlibrary/pull/57) vorgelegt haben.
+
+## Updates
+
+Der Pullrequest ist aktuell noch nicht akzeptiert. Wenn Du die Erweiterung der ImageHorizonLibrary schon einmal testen möchtest, gehe wie folgt vor: 
+
+```bash
+# --- create a new virtual environment 
+virtualenv .venv
+# on Linux
+. .venv/bin/activate
+# on Windows 
+.venv/Scripts/activate
+# --- install RF
+pip install robotframework
+# --- clone the repository, switch branch
+git clone git@github.com:simonmeggle/robotframework-imagehorizonlibrary.git
+cd robotframework-imagehorizonlibrary
+git fetch -a 
+git checkout skimage
+# --- install the current development state as "editable" module
+pip install -e . 
+```
 
 
 ## Danke an ABRAXAS Informatik AG
