@@ -153,13 +153,18 @@ And of course, I also fiddled around with `confidence`. :-) But it was painful t
 
 In the course of my error search I expanded the test so that on every run it first took a partial screenshot (btw, a really cool feature of [Screencap Library](https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html)) of exactly the map region which should be checked. 
 
-The following two images obviously seem to be fully identical, even when zooming in: 
+The following two images show 
+
+- the reference image
+- the cropped screenshot image
+  
+and obviously, they seem to be fully identical, even when zooming in (don't they?): 
 
 {{< image src="images/post/ihl-skimage-pr-highwaymap.png" >}}
 
 After some time, I compared the MD5 checksums of all those screenshots. 
 
-**I was pretty astonished**: indeed, a small amount of the checksums, taken on three different hosts, were different! (Look at the `b17` und `cd2` sums...!) 
+**I was pretty astonished**: indeed, most of the checksums were equal (the reference image matched), but a small amount of the checksums, taken on three different hosts, **were different**! (Look at the `b17` und `cd2` sums...!) 
 
 {{< image src="images/post/ihl-skimage-pr-md5sumpng.png" >}}
 

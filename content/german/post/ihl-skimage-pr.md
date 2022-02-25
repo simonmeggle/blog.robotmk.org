@@ -154,13 +154,18 @@ Und natürlich fummelte ich an der `confidence`. :-) Aber ohne Feedback, *was ge
 
 Im Rahmen meiner Fehlersuche erweiterte ich daraufhin den Test, sodass er unmittelbar vor der Erkennung partial Screenshots (ein cooles Feature der [Screencap Library](https://mihaiparvu.github.io/ScreenCapLibrary/ScreenCapLibrary.html)) von exakt der zu erkennenden Kartenregion anlegte.
 
-Hier zwei solcher Bilder der Landeskarte, die augenscheinlich - auch bei extremer Vergrößerung - absolut gleich aussehen: 
+Hier zwei solcher Bilder der Landeskarte: 
+
+- das Referenzbild
+- den zugeschnittenen Teil des Screenshots
+  
+und sie scheinen - auch bei extremer Vergrößerung - absolut gleich auszusehen (oder nicht?): 
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-highwaymap.png" >}}
 
 Nach einiger Zeit verglich ich dann die MD5-Prüfsummen der angelegten Screenshots von den Maps, **wie sie tatsächlich angezeigt wurden**. 
 
-**Ich staunte nicht schlecht**: ein kleiner Teil der Prüfsummen war auf den drei Testhosts tatsächlich stets unterschiedlich! (Seht euch die MD5-Hashes mal genau an: `b17` und `cd2` sind komplementär Ausreißer und Haupt-Hash!)
+**Ich staunte nicht schlecht**: Wie erwartet waren die meisten Prüfsummen gleich (das Referenzbild passte also), ein kleiner Teil der Prüfsummen aber war auf den drei Testhosts tatsächlich **stets unterschiedlich**! (Seht euch die MD5-Hashes mal genau an: `b17` und `cd2` sind komplementär Ausreißer und Haupt-Hash!)
 
 {{< image alt="XXXX" src="images/post/ihl-skimage-pr-md5sumpng.png" >}}
 
